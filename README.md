@@ -1,1 +1,5 @@
-# Graph Neural Networks - Theory and Applications
+# Computational Geometry
+
+- Classic algorithms
+- Geometrics deep learning
+- Graph neural networks
