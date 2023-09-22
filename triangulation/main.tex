@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[brazilian]{babel}
+\usepackage{geometry}
+\geometry{a4paper, total={150mm,240mm}, top=25mm}
+\usepackage{graphicx}
+\usepackage{titling}
+
+\title{Exercício Prático - Triangulação de Polígonos}
+\author{Kleyton da Costa (2312730)}
+\date{\today}
+ 
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%  the preset of fancyhdr 
+    \fancyhf{} % clear all header and footer fields
+    \fancyfoot[R]{\includegraphics[width=3cm]{di.png}}
+    \fancyfoot[L]{\today}
+    \fancyhead[L]{Geometria Computacional}
+    \fancyhead[R]{\theauthor}
+}
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 1em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1em%
+    %{\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1em}
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+\noindent\begin{tabular}{@{}ll}
+    Aluno & \theauthor \\
+    Professor &  Waldemar Celes (DI/PUC-Rio)
+\end{tabular}
+
+\section{Introdução}
+
+
+\end{document}
