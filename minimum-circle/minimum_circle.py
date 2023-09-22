@@ -1,14 +1,22 @@
 import random
-from math import sqrt
-
 import numpy as np
 import time
+from math import sqrt
 
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+plt.rc('text', usetex=True)
+plt.rc('font', size=12)
+sns.set_style("whitegrid")
+sns.set_context("notebook", font_scale=1, rc={"lines.linewidth": 2.5})
+
+circle_color = "lightslategray"
+points_color = "navy"
+
+
 class ComputeMinimumCircle:
-    
+
     def __init__(self):
         pass
     
@@ -125,16 +133,8 @@ class ComputeMinimumCircle:
                 circle = self.min_circle_with_point(random_perm[0:i], random_perm[i])
         return circle
 
-    def plot_min_circle_random(self, sizes, path=None):
+    def plot_min_circle_random(self, sizes, path=None, show = False):
 
-        plt.rc('text', usetex=True)
-        plt.rc('font', size=12)
-
-        sns.set_style("whitegrid")
-        sns.set_context("notebook", font_scale=1, rc={"lines.linewidth": 2.5})
-
-        circle_color = "lightslategray"
-        points_color = "navy"
         time_heuristic = []
         time_min_circle = []
         for num_points in sizes:
@@ -179,8 +179,9 @@ class ComputeMinimumCircle:
             ax[1].plot(min_circle[0][0], min_circle[0][1], '+', color="orangered")
             
             if path is not None:
-                plt.savefig(path + str(num_points) + ".pdf")
-            plt.show()
+                plt.savefig(path + f'plot_min_circle_{str(num_points)}_points' + ".pdf")
+            if show is True:
+                plt.show()
 
         plt.plot(sizes, time_min_circle, "indianred")
         plt.plot(sizes, time_heuristic, "seagreen")
@@ -190,4 +191,46 @@ class ComputeMinimumCircle:
         plt.grid(True)
         if path is not None:
             plt.savefig(path + "time.pdf")
-        plt.show()
+        if show is True:
+            plt.show()
+
+    def plot_min_circle(self, data, path=None, show=False):
+        
+        min_circle = self.minimum_circle(data)
+        min_circle_heuristic = self.minimum_circle_heuristic(data)
+        print("MinCircle Center/Radius: " + str(min_circle[0]) + " / " + str(min_circle[1]))
+        print("Heuristic Center/Radius: " + str(min_circle_heuristic[0]) + " / " + str(min_circle_heuristic[1]))
+
+        min_circle_plt = plt.Circle(min_circle[0], min_circle[1], color=circle_color, clip_on=False, fill=False)
+        min_circle_heuristic_plt = plt.Circle(min_circle_heuristic[0], min_circle_heuristic[1], color=circle_color, clip_on=False, fill=False)
+        fig, (ax1, ax2) = plt.subplots(1, 2)
+        ax1.set_title('MinCircle, points.txt')
+        ax1.set_aspect(1)
+        ax1.scatter(data[:, 0], data[:, 1], color=points_color)
+        ax1.set_xlim((0, 800))
+        ax1.set_ylim((0, 800))
+        ax1.add_artist(min_circle_plt)
+        ax1.plot(min_circle[0][0], min_circle[0][1], '+', color="orangered")
+
+        ax2.set_title('Heuristc, points.txt')
+        ax2.set_aspect(1)
+        ax2.scatter(data[:, 0], data[:, 1], color=points_color)
+        ax2.set_xlim((0, 800))
+        ax2.set_ylim((0, 800))
+        ax2.add_artist(min_circle_heuristic_plt)
+        ax2.plot(min_circle[0][0], min_circle[0][1], '+', color="orangered")
+        
+        if path is not None:
+            plt.savefig(path + f'plot_min_circle' + ".pdf")
+        if show is True:
+            plt.show()
+
+if __name__ == "__main__":
+    circle_computer = ComputeMinimumCircle()
+    sizes = [20, 200, 2000, 20000, 200000]
+    circle_computer.plot_min_circle_random(sizes, path="minimum-circle/figures/")
+
+if __name__ == "__main__":
+    circle_computer_data = ComputeMinimumCircle()
+    data = np.loadtxt("minimum-circle/points.txt", delimiter=",")
+    circle_computer_data.plot_min_circle(data, path="minimum-circle/figures/")
