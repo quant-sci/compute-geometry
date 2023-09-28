@@ -182,7 +182,7 @@ class ComputeMinimumCircle:
                 plt.savefig(path + f'plot_min_circle_{str(num_points)}_points' + ".pdf")
             if show is True:
                 plt.show()
-
+        fig = plt.figure(figsize=(5, 5))
         plt.plot(sizes, time_min_circle, "indianred")
         plt.plot(sizes, time_heuristic, "seagreen")
         plt.xlabel('Input size')
@@ -195,9 +195,19 @@ class ComputeMinimumCircle:
             plt.show()
 
     def plot_min_circle(self, data, path=None, show=False):
-        
+        time_heuristic = []
+        time_min_circle = []
+
+        start_time = time.time()
         min_circle = self.minimum_circle(data)
+        end_time = time.time()
+        time_min_circle.append(end_time - start_time)
+
+        start_time = time.time()
         min_circle_heuristic = self.minimum_circle_heuristic(data)
+        end_time = time.time()
+        time_heuristic.append(end_time - start_time)
+        
         print("MinCircle Center/Radius: " + str(min_circle[0]) + " / " + str(min_circle[1]))
         print("Heuristic Center/Radius: " + str(min_circle_heuristic[0]) + " / " + str(min_circle_heuristic[1]))
 
@@ -225,12 +235,24 @@ class ComputeMinimumCircle:
         if show is True:
             plt.show()
 
+        fig = plt.figure(figsize=(5, 5))
+        import pandas as pd
+        times = pd.DataFrame({"time_min_circle": time_min_circle, "time_heuristic": time_heuristic})
+        times.plot(kind = 'bar', color = ["indianred", "seagreen"])
+        plt.legend(["Minimum Circle", "Minimum Circle (Heuristic)"])
+        plt.grid(True)
+        
+        if path is not None:
+            plt.savefig(path + "time.pdf")
+        if show is True:
+            plt.show()
+
 if __name__ == "__main__":
     circle_computer = ComputeMinimumCircle()
     sizes = [20, 200, 2000, 20000, 200000]
-    circle_computer.plot_min_circle_random(sizes, path="minimum-circle/figures/")
+    circle_computer.plot_min_circle_random(sizes, path="minimum-circle/figures/simulation/")
 
 if __name__ == "__main__":
     circle_computer_data = ComputeMinimumCircle()
     data = np.loadtxt("minimum-circle/points.txt", delimiter=",")
-    circle_computer_data.plot_min_circle(data, path="minimum-circle/figures/")
+    circle_computer_data.plot_min_circle(data, path="minimum-circle/figures/points/")
