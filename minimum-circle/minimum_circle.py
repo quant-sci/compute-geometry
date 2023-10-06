@@ -14,9 +14,7 @@ sns.set_context("notebook", font_scale=1, rc={"lines.linewidth": 2.5})
 circle_color = "lightslategray"
 points_color = "navy"
 
-
 class ComputeMinimumCircle:
-
     def __init__(self):
         pass
     

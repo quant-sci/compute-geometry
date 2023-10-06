@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.9.1)  26 SEP 2023 11:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.9.1)  6 OCT 2023 00:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -81,38 +81,53 @@ Package: titling 2009/09/04 v2.1d maketitle typesetting
 \thanksmarkwidth=\skip49
 \thanksmargin=\skip50
 \droptitle=\skip51
+) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count198
+\float@exts=\toks20
+\float@box=\box50
+\@float@everytoks=\toks21
+\@floatcapt=\box51
+) (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip52
+\bibsep=\skip53
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count199
+) (/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
 ) (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and footers
-\f@nch@headwidth=\skip52
-\f@nch@O@elh=\skip53
-\f@nch@O@erh=\skip54
-\f@nch@O@olh=\skip55
-\f@nch@O@orh=\skip56
-\f@nch@O@elf=\skip57
-\f@nch@O@erf=\skip58
-\f@nch@O@olf=\skip59
-\f@nch@O@orf=\skip60
+\f@nch@headwidth=\skip54
+\f@nch@O@elh=\skip55
+\f@nch@O@erh=\skip56
+\f@nch@O@olh=\skip57
+\f@nch@O@orh=\skip58
+\f@nch@O@elf=\skip59
+\f@nch@O@erf=\skip60
+\f@nch@O@olf=\skip61
+\f@nch@O@orf=\skip62
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count198
-\l__pdf_internal_box=\box50
+\l__color_backend_stack_int=\count266
+\l__pdf_internal_box=\box52
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -150,17 +165,17 @@ LaTeX Font Info:    ... okay on input line 36.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count199
+\scratchcounter=\count267
 \scratchdimen=\dimen150
-\scratchbox=\box51
-\nofMPsegments=\count266
-\nofMParguments=\count267
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count268
+\scratchbox=\box53
+\nofMPsegments=\count268
+\nofMParguments=\count269
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count270
 \MPscratchDim=\dimen151
-\MPnumerator=\count269
-\makeMPintoPDFobject=\count270
-\everyMPtoPDFconversion=\toks21
+\MPnumerator=\count271
+\makeMPintoPDFobject=\count272
+\everyMPtoPDFconversion=\toks23
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -168,13 +183,18 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 40.
+(Font)              <7> on input line 44.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 40.
-<di.png, id=1, 701.7417pt x 232.7094pt>
+(Font)              <5> on input line 44.
+<nuvens.pdf, id=1, 867.24pt x 505.89pt>
+File: nuvens.pdf Graphic file (type pdf)
+<use nuvens.pdf>
+Package pdftex.def Info: nuvens.pdf  used on input line 74.
+(pdftex.def)             Requested size: 346.88986pt x 202.3524pt.
+<di.png, id=2, 701.7417pt x 232.7094pt>
 File: di.png Graphic file (type png)
 <use di.png>
-Package pdftex.def Info: di.png  used on input line 48.
+Package pdftex.def Info: di.png  used on input line 78.
 (pdftex.def)             Requested size: 85.35826pt x 28.30385pt.
 
 
@@ -184,20 +204,56 @@ Package fancyhdr Warning: \footskip is too small (30.0pt):
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
- <./di.png>] (./main.aux) ) 
+ <./di.png>]
+<random_test.png, id=19, 867.24pt x 505.89pt>
+File: random_test.png Graphic file (type png)
+<use random_test.png>
+Package pdftex.def Info: random_test.png  used on input line 85.
+(pdftex.def)             Requested size: 433.61894pt x 252.94437pt.
+
+Overfull \hbox (6.8276pt too wide) in paragraph at lines 85--86
+ [][] 
+ []
+
+<runtime_test.pdf, id=20, 867.24pt x 505.89pt>
+File: runtime_test.pdf Graphic file (type pdf)
+<use runtime_test.pdf>
+Package pdftex.def Info: runtime_test.pdf  used on input line 94.
+(pdftex.def)             Requested size: 433.61894pt x 252.94437pt.
+
+Overfull \hbox (6.8276pt too wide) in paragraph at lines 94--95
+ [][] 
+ []
+
+[2 <./nuvens.pdf> <./random_test.png>] (./main.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 9--18
+[]\OT1/cmr/m/n/10 R.A. Jar-vis.  On the iden-ti-fi-ca-tion of the con-vex hull of a fi-nite set of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--18
+\OT1/cmr/m/n/10 points in the plane.  \OT1/cmr/m/it/10 In-for-ma-tion Pro-ces-sing Let-ters\OT1/cmr/m/n/10 , 2(1):18--21, 1973.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--18
+\OT1/cmr/m/n/10 ISSN 0020-0190.  doi: https://doi.org/10.1016/0020-0190(73)90020-3.  URL
+ []
+
+) [3 <./runtime_test.pdf>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 3065 strings out of 478287
- 50687 string characters out of 5849290
- 360096 words of memory out of 5000000
- 21271 multiletter control sequences out of 15000+600000
- 470163 words of font info for 31 fonts, out of 8000000 for 9000
+ 3586 strings out of 478287
+ 58127 string characters out of 5849290
+ 375784 words of memory out of 5000000
+ 21772 multiletter control sequences out of 15000+600000
+ 471282 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,14n,62p,264b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on main.pdf (1 page, 165012 bytes).
+ 55i,14n,62p,1226b,394s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on main.pdf (3 pages, 440789 bytes).
 PDF statistics:
- 26 PDF objects out of 1000 (max. 8388607)
- 14 compressed objects within 1 object stream
+ 99 PDF objects out of 1000 (max. 8388607)
+ 62 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
