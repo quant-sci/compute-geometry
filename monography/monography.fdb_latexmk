@@ -1,7 +1,13 @@
 # Fdb version 3
-["pdflatex"] 1695931416 "/home/kcosta/repos/research/computational-geometry/monography/monography.tex" "monography.pdf" "monography" 1695931416
+["bibtex monography"] 1699213659 "monography.aux" "monography.bbl" "monography" 1699213659
+  "monography.aux" 1699213659 1513 059a929d58aa382054d5ffc595d498f5 "pdflatex"
+  "monography/references.bib" 0 -1 0 ""
+  (generated)
+  "monography.bbl"
+  "monography.blg"
+["pdflatex"] 1699213659 "/home/kcosta/repos/research/computational-geometry/monography/monography.tex" "monography.pdf" "monography" 1699213659
   "/etc/texmf/web2c/texmf.cnf" 1693542403 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/kcosta/repos/research/computational-geometry/monography/monography.tex" 1695931368 1994 a51fa14edf092f04168fe774aba74c76 ""
+  "/home/kcosta/repos/research/computational-geometry/monography/monography.tex" 1699213659 2014 738b88237b0c8b9a50591e8d9797b52c ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm" 1136768653 4524 6bce29db5bc272ba5f332261583fee9c ""
@@ -107,9 +113,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1693542417 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1693542441 2797936 8de67f992b5550604e8507ba90eb001a ""
-  "monography.aux" 1695931416 1707 4b137bd6ba7d37bd0db9784fcaef28cc "pdflatex"
-  "monography.out" 1695931416 1065 2deaf77df8111f045103937c0033b0ab "pdflatex"
-  "monography.tex" 1695931368 1994 a51fa14edf092f04168fe774aba74c76 ""
+  "monography.aux" 1699213659 1513 059a929d58aa382054d5ffc595d498f5 "pdflatex"
+  "monography.bbl" 0 -1 0 "bibtex monography"
+  "monography.out" 1699213659 821 53c2d711b24dd26ad49359091768ac3d "pdflatex"
+  "monography.tex" 1699213659 2014 738b88237b0c8b9a50591e8d9797b52c ""
   "neurips.sty" 1695931305 11304 bd8d83fe4e6a25ccd7bc55fc9f49500d ""
   (generated)
   "monography.aux"
