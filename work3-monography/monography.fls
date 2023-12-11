@@ -1,9 +1,9 @@
-PWD /home/kcosta/repos/research/computational-geometry/monography
+PWD /home/kcosta/repos/research/computational-geometry/work3-monography
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/kcosta/repos/research/computational-geometry/monography/monography.tex
+INPUT /home/kcosta/repos/research/computational-geometry/work3-monography/monography.tex
 OUTPUT monography.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls

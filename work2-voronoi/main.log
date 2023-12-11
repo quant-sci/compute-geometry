@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.9.1)  5 NOV 2023 16:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.9.1)  14 NOV 2023 11:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -96,38 +96,71 @@ LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count199
 ) (/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
+) (/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2020/11/24 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks22
+\c@algorithm=\count266
+) (/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package: algpseudocode 
+ (/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count267
+\c@ALG@rem=\count268
+\c@ALG@nested=\count269
+\ALG@tlm=\skip54
+\ALG@thistlm=\skip55
+\c@ALG@Lnr=\count270
+\c@ALG@blocknr=\count271
+\c@ALG@storecount=\count272
+\c@ALG@tmpcounter=\count273
+\ALG@tmplength=\skip56
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks23
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ) (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and footers
-\f@nch@headwidth=\skip54
-\f@nch@O@elh=\skip55
-\f@nch@O@erh=\skip56
-\f@nch@O@olh=\skip57
-\f@nch@O@orh=\skip58
-\f@nch@O@elf=\skip59
-\f@nch@O@erf=\skip60
-\f@nch@O@olf=\skip61
-\f@nch@O@orf=\skip62
+\f@nch@headwidth=\skip57
+\f@nch@O@elh=\skip58
+\f@nch@O@erh=\skip59
+\f@nch@O@olh=\skip60
+\f@nch@O@orh=\skip61
+\f@nch@O@elf=\skip62
+\f@nch@O@erf=\skip63
+\f@nch@O@olf=\skip64
+\f@nch@O@orf=\skip65
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count266
+\l__color_backend_stack_int=\count274
 \l__pdf_internal_box=\box52
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -165,65 +198,76 @@ LaTeX Font Info:    ... okay on input line 40.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count267
+\scratchcounter=\count275
 \scratchdimen=\dimen150
 \scratchbox=\box53
-\nofMPsegments=\count268
-\nofMParguments=\count269
-\everyMPshowfont=\toks22
-\MPscratchCnt=\count270
+\nofMPsegments=\count276
+\nofMParguments=\count277
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count278
 \MPscratchDim=\dimen151
-\MPnumerator=\count271
-\makeMPintoPDFobject=\count272
-\everyMPtoPDFconversion=\toks23
+\MPnumerator=\count279
+\makeMPintoPDFobject=\count280
+\everyMPtoPDFconversion=\toks25
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 44.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 44.
-
-No file main.bbl.
-
-LaTeX Warning: File `di.png' not found on input line 64.
-
-
-/home/kcosta/repos/research/computational-geometry/work2-voronoi/main.tex:64: Package pdftex.def Error: File `di.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.64 \end{document}
-                   
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 47.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 47.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+<incremental.png, id=1, 1084.05pt x 506.89375pt>
+File: incremental.png Graphic file (type png)
+<use incremental.png>
+Package pdftex.def Info: incremental.png  used on input line 74.
+(pdftex.def)             Requested size: 325.21751pt x 152.06929pt.
+<di.png, id=3, 701.7417pt x 232.7094pt>
+File: di.png Graphic file (type png)
+<use di.png>
+Package pdftex.def Info: di.png  used on input line 78.
+(pdftex.def)             Requested size: 85.35826pt x 28.30385pt.
 
 
 Package fancyhdr Warning: \footskip is too small (30.0pt): 
-(fancyhdr)                Make it at least 88.963pt, for example:
-(fancyhdr)                \setlength{\footskip}{88.963pt}.
+(fancyhdr)                Make it at least 31.90388pt, for example:
+(fancyhdr)                \setlength{\footskip}{31.90388pt}.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-] (./main.aux) ) 
+ <./di.png>]
+<plot_voronoi1.pdf, id=19, 433.62pt x 433.62pt>
+File: plot_voronoi1.pdf Graphic file (type pdf)
+<use plot_voronoi1.pdf>
+Package pdftex.def Info: plot_voronoi1.pdf  used on input line 86.
+(pdftex.def)             Requested size: 260.17401pt x 260.17401pt.
+<plot_voronoi2.pdf, id=20, 433.62pt x 433.62pt>
+File: plot_voronoi2.pdf Graphic file (type pdf)
+<use plot_voronoi2.pdf>
+Package pdftex.def Info: plot_voronoi2.pdf  used on input line 93.
+(pdftex.def)             Requested size: 260.17401pt x 260.17401pt.
+ [2 <./incremental.png> <./plot_voronoi1.pdf>]
+No file main.bbl.
+[3 <./plot_voronoi2.pdf>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 3571 strings out of 478287
- 57818 string characters out of 5849290
- 368748 words of memory out of 5000000
- 21751 multiletter control sequences out of 15000+600000
- 470331 words of font info for 32 fonts, out of 8000000 for 9000
+ 4288 strings out of 478287
+ 69677 string characters out of 5849290
+ 384927 words of memory out of 5000000
+ 22446 multiletter control sequences out of 15000+600000
+ 472208 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,13n,62p,266b,432s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on main.pdf (1 page, 52889 bytes).
+ 55i,14n,62p,709b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (3 pages, 429665 bytes).
 PDF statistics:
- 28 PDF objects out of 1000 (max. 8388607)
- 16 compressed objects within 1 object stream
+ 88 PDF objects out of 1000 (max. 8388607)
+ 54 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
