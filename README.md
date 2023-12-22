@@ -1,5 +1,3 @@
-# Computational Geometry
-
 # Computational Geometry in Python
 
 Welcome to the Computational Geometry in Python repository! This repository is a collection of exercises and tasks aimed at helping you develop your skills in computational geometry using Python.
