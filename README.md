@@ -1,6 +1,6 @@
-# Computational Geometry in Python
+# Geometric Python
 
-Welcome to the Computational Geometry in Python repository! This repository is a collection of exercises and tasks aimed at helping you develop your skills in computational geometry using Python.
+Welcome to the Geometric Python repository! This repository is a collection of exercises and tasks aimed at helping you develop your skills in computational geometry using Python.
 
 ## Table of Contents
 
@@ -44,12 +44,12 @@ To get started with the exercises, follow these steps:
    pip install -r requirements.txt
    ```
 
-5. **Explore the Exercises:**
-   Browse the `exercises` directory to find a variety of computational geometry tasks. Each exercise comes with a description and a starting code template to guide you through the implementation.
+5. **Explore the Examples:**
+   Browse the `examples` directory to find a variety of computational geometry tasks. Each exercise comes with a description and a starting code template to guide you through the implementation.
 
 ## Exercises
 
-The `exercises` directory contains a set of tasks covering various computational geometry topics, such as:
+The `examples` directory contains a set of tasks covering various computational geometry topics, such as:
 
 - Minimum Circle
 - Triangulation
