@@ -1,71 +1,61 @@
-# Geometric Python
+<h1 align="center">
+<img src="logo.png" width="400">
+</h1>
 
-Welcome to the Geometric Python repository! This repository is a collection of exercises and tasks aimed at helping you develop your skills in computational geometry using Python.
+Welcome to the **Geometry** library, a comprehensive computational geometry library for Python. This library is designed to provide a set of tools and algorithms for solving geometric problems, making it a valuable resource for developers and researchers working in areas such as computer graphics, robotics, and geographic information systems.
 
-## Table of Contents
+## Features
 
-- [Introduction](#introduction)
-- [Getting Started](#getting-started)
-- [Exercises](#exercises)
-- [Contributing](#contributing)
-- [License](#license)
+- **Geometry Primitives:** Efficient implementations of fundamental geometric primitives, including points, lines, and polygons.
+  
+- **Algorithms:** A variety of computational geometry algorithms, such as convex hull computation, line segment intersection, and Voronoi diagram generation.
 
-## Introduction
+- **Geometry Operations:** Functions for performing common geometric operations, such as distance calculations, area computations, and geometric transformations.
 
-Computational geometry is a branch of computer science that focuses on the study of algorithms and data structures for solving geometric problems. This repository provides a hands-on approach to learning and implementing computational geometry concepts in Python. Whether you are a beginner or an experienced developer, these exercises will enhance your understanding of geometric algorithms and their applications.
+- **Documentation:** Comprehensive documentation with usage examples to help you quickly integrate the library into your projects.
+
+## Installation
+
+You can install the Geometry library using `pip`:
+
+```bash
+pip install geometry
+```
 
 ## Getting Started
 
-To get started with the exercises, follow these steps:
+To get started with the Geometry library, import it into your Python script or project:
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/your-username/computational-geometry-python.git
-   cd computational-geometry-python
-   ```
+```python
+import geometry
+```
 
-2. **Create a Virtual Environment:**
-   ```bash
-   python -m venv venv
-   ```
+Explore the library's documentation to understand the available functionality and how to use it effectively.
 
-3. **Activate the Virtual Environment:**
-   - On Windows:
-     ```bash
-     venv\Scripts\activate
-     ```
-   - On Unix or MacOS:
-     ```bash
-     source venv/bin/activate
-     ```
+## Examples
 
-4. **Install Dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+Here are some examples to demonstrate how to use the Geometry library:
 
-5. **Explore the Examples:**
-   Browse the `examples` directory to find a variety of computational geometry tasks. Each exercise comes with a description and a starting code template to guide you through the implementation.
+```python
+# Example 1: Compute the convex hull of a set of points
+points = [(0, 0), (1, 1), (2, 2), (0, 2)]
+convex_hull = geometry.convex_hull(points)
+print("Convex Hull:", convex_hull.points)
 
-## Exercises
+convex_hull.plot()
 
-The `examples` directory contains a set of tasks covering various computational geometry topics, such as:
-
-- Minimum Circle
-- Triangulation
-- Mesher
-- Bilinear Projector
-- Convex-Hull
-- Voronoi Diagram
-
-Feel free to choose exercises based on your interest and skill level. Each exercise includes a README file with detailed instructions and examples.
+# Example 2: Check if two line segments intersect
+segment1 = [(1, 1), (4, 4)]
+segment2 = [(3, 1), (1, 3)]
+print(geometry.segments_intersect(segment1, segment2))
+```
 
 ## Contributing
 
-Contributions are welcome! If you have additional exercises, improvements, or corrections, please submit a pull request. Be sure to follow the [contribution guidelines](CONTRIBUTING.md) outlined in the repository.
+Contributions to the Geometry library are welcome! If you have additional algorithms, improvements, or bug fixes, please submit a pull request. Be sure to follow the [contribution guidelines](CONTRIBUTING.md) outlined in the repository.
 
 ## License
 
-This repository is licensed under the [MIT License](LICENSE), which means you are free to use, modify, and distribute the code for both commercial and non-commercial purposes.
+This library is licensed under the [MIT License](LICENSE), allowing you to use, modify, and distribute it for both commercial and non-commercial purposes.
 
-Happy coding and enjoy exploring the fascinating world of computational geometry in Python!
+Start exploring the world of computational geometry with the Geometry library in Python!
