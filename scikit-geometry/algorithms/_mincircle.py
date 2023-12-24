@@ -15,7 +15,7 @@ sns.set_context("notebook", font_scale=1, rc={"lines.linewidth": 2.5})
 circle_color = "lightslategray"
 points_color = "navy"
 
-class ComputeMinimumCircle:
+class MinimumCircle:
     def __init__(self):
         pass
     
@@ -112,7 +112,7 @@ class ComputeMinimumCircle:
         for i in range(1, len(num_points)):
             d = sqrt((circle[0][0] - num_points[i][0]) ** 2 + (circle[0][1] - num_points[i][1]) ** 2)
             if d > circle[1]:
-                circle = ComputeMinimumCircle.minimum_circle_points(num_points[0:i], num_points[i], q)
+                circle = MinimumCircle.minimum_circle_points(num_points[0:i], num_points[i], q)
         return circle
 
     def minimum_circle(self, num_points):
