@@ -2,7 +2,7 @@
 <img src="logo.png" width="400">
 </h1>
 
-Welcome to the **Geometry** library, a comprehensive computational geometry library for Python. This library is designed to provide a set of tools and algorithms for solving geometric problems, making it a valuable resource for developers and researchers working in areas such as computer graphics, robotics, and geographic information systems.
+Welcome to the **scikit-geometry** library, a comprehensive computational geometry library for Python. This library is designed to provide a set of tools and algorithms for solving geometric problems, making it a valuable resource for developers and researchers working in areas such as computer graphics, robotics, and geographic information systems.
 
 ## Features
 
@@ -19,15 +19,15 @@ Welcome to the **Geometry** library, a comprehensive computational geometry libr
 You can install the Geometry library using `pip`:
 
 ```bash
-pip install geometry
+pip install scikit-geometry
 ```
 
 ## Getting Started
 
-To get started with the Geometry library, import it into your Python script or project:
+To get started with the _scikit-geometry_ library, import it into your Python script or project:
 
 ```python
-import geometry
+import scikit-geometry as geometry
 ```
 
 Explore the library's documentation to understand the available functionality and how to use it effectively.
@@ -52,10 +52,10 @@ print(geometry.segments_intersect(segment1, segment2))
 
 ## Contributing
 
-Contributions to the Geometry library are welcome! If you have additional algorithms, improvements, or bug fixes, please submit a pull request. Be sure to follow the [contribution guidelines](CONTRIBUTING.md) outlined in the repository.
+Contributions to the _scikit-geometry_ library are welcome! If you have additional algorithms, improvements, or bug fixes, please submit a pull request. Be sure to follow the [contribution guidelines](CONTRIBUTING.md) outlined in the repository.
 
 ## License
 
 This library is licensed under the [MIT License](LICENSE), allowing you to use, modify, and distribute it for both commercial and non-commercial purposes.
 
-Start exploring the world of computational geometry with the Geometry library in Python!
+Start exploring the world of computational geometry with the _scikit-geometry_ library in Python!
