@@ -232,7 +232,9 @@ class VoronoiDiagram:
 
         return self.cells
     
-def plot_voronoi(data, cells):
+    def plot_voronoi(self, cells):
+        # Plot the Voronoi diagram
+        data = np.array(self.data)
         fig, ax = plt.subplots(figsize = (6, 6))
         ax.scatter(data[:, 0], data[:, 1], color='navy', label = 'Pontos')
         axes = plt.axis()
@@ -243,3 +245,4 @@ def plot_voronoi(data, cells):
                 
         plt.xlim([axes[0], axes[1]])
         plt.ylim([axes[2], axes[3]])
+        plt.title("Voronoi Diagram")

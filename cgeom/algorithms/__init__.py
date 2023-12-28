@@ -1,7 +1,7 @@
 
 
 from ._mincircle import (
-    ComputeMinimumCircle
+    MinimumCircle
 )
 
 from ._convexhull import (

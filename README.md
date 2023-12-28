@@ -12,11 +12,13 @@ Welcome to the **compute-geometry** library, a comprehensive computational geome
 
 - **Geometry Operations:** Functions for performing common geometric operations, such as distance calculations, area computations, and geometric transformations.
 
+- **Visualization:** Functions for visualizing geometric objects and algorithms using Matplotlib.
+
 - **Documentation:** Comprehensive documentation with usage examples to help you quickly integrate the library into your projects.
 
 ## Installation
 
-You can install the Geometry library using `pip`:
+You can install the **compute-geometry** library using `pip`:
 
 ```bash
 pip install compute-geometry
@@ -38,16 +40,38 @@ Here are some examples to demonstrate how to use the Geometry library:
 
 ```python
 # Example 1: Compute the convex hull of a set of points
-points = [(0, 0), (1, 1), (2, 2), (0, 2)]
-convex_hull = cgeom.convex_hull(points)
-print("Convex Hull:", convex_hull.points)
 
+from cgeom.algorithms import ConvexHull
+
+# create a list of points
+points = [(326, 237),(373, 209), (378, 265), (443, 241), (396, 231), (416, 270), (361, 335), (324, 297)]
+
+# create a convex hull object with the list of points
+convex_hull = ConvexHull(points)
+
+# plot the convex hull
 convex_hull.plot()
 
-# Example 2: Check if two line segments intersect
-segment1 = [(1, 1), (4, 4)]
-segment2 = [(3, 1), (1, 3)]
-print(geometry.segments_intersect(segment1, segment2))
+# print the indexes of the points that form the convex hull
+print('Convex Hull: ', convex_hull.get_indexes())
+
+
+# Example 2: Compute Voronoi diagram of a set of points
+
+from cgeom.voronoi import VoronoiDiagram
+
+# load a set of points
+points = np.loadtxt("./points1.txt")
+
+# create a voronoi diagram object
+voronoi = VoronoiDiagram(points)
+
+# build the voronoi diagram
+cells = voronoi.build_voronoi_diagram()
+
+# plot the voronoi diagram
+voronoi.plot_voronoi(cells)
+
 ```
 
 ## Contributing
