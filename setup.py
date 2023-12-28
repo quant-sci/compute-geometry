@@ -4,7 +4,7 @@ with open("README.md", "r", encoding = "utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name = "computational-geometry",
+    name = "compute-geometry",
     version = "0.0.1",
     author = "Kleyton da Costa",
     author_email = "kleyton.vsc@gmail.com",

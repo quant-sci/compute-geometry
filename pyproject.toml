@@ -6,7 +6,7 @@ version_files = [
 ]
 
 [tool.poetry]
-name = "computational-geometry"
+name = "compute-geometry"
 version = "0.0.1"
 description = "Computational Geometry Library"
 authors = ["Kleyton da Costa"]
