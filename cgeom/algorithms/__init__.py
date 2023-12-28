@@ -5,7 +5,7 @@ from ._mincircle import (
 )
 
 from ._convexhull import (
-    JarvisMarchGift,
+    ConvexHull,
 )
 
 from ._triangulation import (
@@ -18,7 +18,7 @@ from ._voronoi import (
 
 __all__ = [
     'MinimumCircle',
-    'JarvisMarchGift',
+    'ConvexHull',
     'PolygonTriangulation',
     'VoronoiDiagram',
 ]

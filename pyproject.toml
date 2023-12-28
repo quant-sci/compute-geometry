@@ -6,7 +6,7 @@ version_files = [
 ]
 
 [tool.poetry]
-name = "scikit-geometry"
+name = "computational-geometry"
 version = "0.0.1"
 description = "Computational Geometry Library"
 authors = ["Kleyton da Costa"]
@@ -14,8 +14,8 @@ maintainers = ["Kleyton da Costa <kleyton.vsc@gmail.com>"]
 readme = "README.md"
 
 packages = [
-    { include = "scikit-geometry" },
-    { include = "scikit-geometry/**/*.py" },
+    { include = "cgeom" },
+    { include = "cgeom/**/*.py" },
 ]
 
 [tool.poetry.dependencies]

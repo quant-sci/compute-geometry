@@ -14,7 +14,7 @@ import time
 
 np.random.seed(42)
 
-class JarvisMarchGift:
+class ConvexHull:
     """Class to find the convex hull of a set of points using the Gift Wrapping algorithm""
     
     Reference: 
