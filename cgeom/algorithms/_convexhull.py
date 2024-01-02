@@ -65,7 +65,7 @@ class ConvexHull:
             b = self.low_angle(a, ch[-2])
         return ch
 
-    def plot(self, title):
+    def plot(self, title='Convex Hull for a set of points'):
         plt.title(title)
         plt.grid(True)
         plt.scatter(self.points[:, 0], self.points[:, 1])

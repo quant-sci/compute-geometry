@@ -26,15 +26,9 @@ pip install compute-geometry
 
 ## Getting Started
 
-To get started with the _compute-geometry_ library, import it into your Python script or project:
-
 ```python
-import compute-geometry as cgeom
+import cgeom
 ```
-
-Explore the library's documentation to understand the available functionality and how to use it effectively.
-
-## Examples
 
 Here are some examples to demonstrate how to use the Geometry library:
 
@@ -58,7 +52,7 @@ print('Convex Hull: ', convex_hull.get_indexes())
 
 # Example 2: Compute Voronoi diagram of a set of points
 
-from cgeom.voronoi import VoronoiDiagram
+from cgeom.algorithms import VoronoiDiagram
 
 # load a set of points
 points = np.loadtxt("./points1.txt")
