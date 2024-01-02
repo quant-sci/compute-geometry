@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
-plt.rc('text', usetex=True)
-plt.rc('font', size=12)
+
 sns.set_style("whitegrid")
 sns.set_context("notebook", font_scale=1.2, rc={"lines.linewidth": 2.5})
 
