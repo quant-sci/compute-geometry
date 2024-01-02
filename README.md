@@ -2,6 +2,10 @@
 <img src="logo.png" width="400">
 </h1>
 
+[![PyPI](https://img.shields.io/pypi/v/compute-geometry)](https://pypi.org/project/compute-geometry/)
+[![GitHub](https://img.shields.io/github/license/kleyt0n/compute-geometry)](https://github.com/kleyt0n/compute-geometry/blob/master/LICENSE)
+
+
 Welcome to the **compute-geometry** library, a comprehensive computational geometry library for Python. This library is designed to provide a set of tools and algorithms for solving geometric problems, making it a valuable resource for developers and researchers working in areas such as computer graphics, robotics, and geographic information systems.
 
 ## Features
