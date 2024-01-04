@@ -1,5 +1,5 @@
 <h1 align="center">
-<img src="logo.png" width="400">
+<img src="logo.svg" width="400">
 </h1>
 
 [![PyPI](https://img.shields.io/pypi/v/compute-geometry)](https://pypi.org/project/compute-geometry/)
