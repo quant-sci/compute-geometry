@@ -1,10 +1,13 @@
-name: compute-geometry
+name: Start a New Release
+
 
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+  workflow_dispatch:
+    inputs:
+        version:
+          description: 'Version Tag in the form X.Y.Z'
+          required: true
+          type: string
 
 jobs:
   lint-test:
