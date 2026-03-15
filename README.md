@@ -6,26 +6,14 @@
 [![GitHub](https://img.shields.io/github/license/kleyt0n/compute-geometry)](https://github.com/kleyt0n/compute-geometry/blob/master/LICENSE)
 
 
-Welcome to the **compute-geometry** library, a comprehensive computational geometry library for Python. This library is designed to provide a set of tools and algorithms for solving geometric problems, making it a valuable resource for developers and researchers working in areas such as computer graphics, robotics, and geographic information systems.
-
-## Features
-
-- **Geometry Primitives:** Efficient implementations of fundamental geometric primitives, including points, lines, and polygons.
-  
-- **Algorithms:** A variety of computational geometry algorithms, such as convex hull computation, line segment intersection, and Voronoi diagram generation.
-
-- **Geometry Operations:** Functions for performing common geometric operations, such as distance calculations, area computations, and geometric transformations.
-
-- **Visualization:** Functions for visualizing geometric objects and algorithms using Matplotlib.
-
-- **Documentation:** Comprehensive documentation with usage examples to help you quickly integrate the library into your projects.
+**compute-geometry** is a research-focused computational geometry library for Python. This library is designed to provide a set of tools and algorithms for solving geometric problems.
 
 ## Installation
 
 You can install the **compute-geometry** library using `pip`:
 
 ```bash
-pip install compute-geometry
+uv add compute-geometry
 ```
 
 ## Getting Started
@@ -71,10 +59,6 @@ cells = voronoi.build_voronoi_diagram()
 voronoi.plot_voronoi(cells)
 
 ```
-
-## Contributing
-
-Contributions to the _compute-geometry_ library are welcome! If you have additional algorithms, improvements, or bug fixes, please submit a pull request. Be sure to follow the [contribution guidelines](CONTRIBUTING.md) outlined in the repository.
 
 ## License
 
