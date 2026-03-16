@@ -1,5 +1,5 @@
 <h1 align="left">
-<img src="logo.png" width="100">
+<img src="public/logo.png" width="100">
 </h1>
 
 [![PyPI](https://img.shields.io/pypi/v/compute-geometry)](https://pypi.org/project/compute-geometry/)
@@ -10,7 +10,7 @@
 
 ## Installation
 
-You can install the **compute-geometry** library using `pip`:
+You can install the **compute-geometry** library using `uv`:
 
 ```bash
 uv add compute-geometry
@@ -25,29 +25,12 @@ import cgeom
 Here are some examples to demonstrate how to use the Geometry library:
 
 ```python
-# Example 1: Compute the convex hull of a set of points
-
-from cgeom.algorithms import ConvexHull
-
-# create a list of points
-points = [(326, 237),(373, 209), (378, 265), (443, 241), (396, 231), (416, 270), (361, 335), (324, 297)]
-
-# create a convex hull object with the list of points
-convex_hull = ConvexHull(points)
-
-# plot the convex hull
-convex_hull.plot()
-
-# print the indexes of the points that form the convex hull
-print('Convex Hull: ', convex_hull.get_indexes())
-
-
-# Example 2: Compute Voronoi diagram of a set of points
-
+import numpy as np
 from cgeom.algorithms import VoronoiDiagram
+from cgeom.visualization import plot_voronoi
 
 # load a set of points
-points = np.loadtxt("./points1.txt")
+points = np.loadtxt("examples/points1.txt")
 
 # create a voronoi diagram object
 voronoi = VoronoiDiagram(points)
@@ -56,9 +39,13 @@ voronoi = VoronoiDiagram(points)
 cells = voronoi.build_voronoi_diagram()
 
 # plot the voronoi diagram
-voronoi.plot_voronoi(cells)
+plot_voronoi(voronoi, cells)
 
 ```
+
+## Elements
+
+![](public/elements.png)
 
 ## License
 
