@@ -24,6 +24,9 @@ class MinimumCircle:
         :param num_points: list of points
         :return: circle
         """
+        from cgeom.elements.models import MinimumCircleInput
+        validated = MinimumCircleInput(points=num_points)
+        num_points = [p[:] for p in validated.points]
         X_max = max([abs(x) for x, y in num_points])
         X_max = [[x, y] for x, y in num_points if abs(x) == X_max][0]
         X_min = min([abs(x) for x, y in num_points])
@@ -119,6 +122,9 @@ class MinimumCircle:
         :param num_points: list of points
         :return: circle
         """
+        from cgeom.elements.models import MinimumCircleInput
+        validated = MinimumCircleInput(points=num_points)
+        num_points = [p[:] for p in validated.points]
         random_perm = self.randomized_permutation(num_points)
         circle = [[0.0, 0.0], 0.0]
         circle[0][0] = (random_perm[0][0] + random_perm[1][0]) / 2
