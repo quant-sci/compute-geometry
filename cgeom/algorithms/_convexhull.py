@@ -24,7 +24,9 @@ class ConvexHull:
         points (np.array): Array of points
     """
     def __init__(self, points):
-        self.points = np.array(points)
+        from cgeom.elements.models import ConvexHullInput
+        validated = ConvexHullInput(points=points)
+        self.points = np.array(validated.points)
 
     def find_low_right(self):
         lower_y = float("inf")

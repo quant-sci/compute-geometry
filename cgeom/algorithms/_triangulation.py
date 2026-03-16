@@ -5,8 +5,10 @@ import random
 
 class PolygonTriangulation:
     def __init__(self, poly, poly_name="Polygon"):
-        self.poly = poly
-        self.poly_name = poly_name
+        from cgeom.elements.models import PolygonTriangulationInput
+        validated = PolygonTriangulationInput(poly=poly, poly_name=poly_name)
+        self.poly = np.array(validated.poly)
+        self.poly_name = validated.poly_name
         self.diagonals = self.Triangulation()
 
     def is_ear(self, poly, vertex):  # Function to define if a given vertex is an ear or not

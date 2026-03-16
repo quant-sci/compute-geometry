@@ -8,7 +8,9 @@ sns.set_context("notebook", font_scale=1.2, rc={"lines.linewidth": 2.5})
 class VoronoiDiagram:
     def __init__(self, data):
         # Initialize the Voronoi diagram with input data
-        self.data = np.array(data)
+        from cgeom.elements.models import VoronoiDiagramInput
+        validated = VoronoiDiagramInput(points=data)
+        self.data = np.array(validated.points)
         self.cells = []
 
     def search_for_cell(self, point):
