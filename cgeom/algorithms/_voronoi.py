@@ -1,9 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-sns.set_style("whitegrid")
-sns.set_context("notebook", font_scale=1.2, rc={"lines.linewidth": 2.5})
 
 class VoronoiDiagram:
     """Construct a Voronoi diagram for a set of 2D sites using incremental insertion.
@@ -297,22 +292,15 @@ class VoronoiDiagram:
             self.cells.append(self.construct_cell(cell, self.data[i]))
 
         return self.cells
-    
-    def plot_voronoi(self, cells):
-        """Plot the Voronoi diagram showing sites and cell edges.
 
-        Args:
-            cells: The cell list returned by :meth:`build_voronoi_diagram`.
-        """
-        data = np.array(self.data)
-        fig, ax = plt.subplots(figsize = (6, 6))
-        ax.scatter(data[:, 0], data[:, 1], color='navy', label = 'Pontos')
-        axes = plt.axis()
-        
-        for c in cells:
-            for line in c[1]:
-                plt.plot([line[0][0], line[1][0]], [line[0][1], line[1][1]], linewidth = 1, color = "black")
-                
-        plt.xlim([axes[0], axes[1]])
-        plt.ylim([axes[2], axes[3]])
-        plt.title("Voronoi Diagram")
+    def plot_voronoi(self, cells):
+        """Deprecated: use cgeom.visualization.plot_voronoi() instead."""
+        import warnings
+        warnings.warn(
+            "VoronoiDiagram.plot_voronoi() is deprecated. "
+            "Use cgeom.visualization.plot_voronoi(voronoi_obj, cells) instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        from cgeom.visualization import plot_voronoi
+        plot_voronoi(self, cells)

@@ -1,17 +1,6 @@
 import random
 import numpy as np
-import pandas as pd
-import time
 from math import sqrt
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-sns.set_style("whitegrid")
-sns.set_context("notebook", font_scale=1, rc={"lines.linewidth": 2.5})
-
-circle_color = "lightslategray"
-points_color = "navy"
 
 class MinimumCircle:
     """Find the minimum enclosing circle for a set of 2D points.
@@ -22,7 +11,7 @@ class MinimumCircle:
 
     def __init__(self):
         pass
-    
+
     @staticmethod
     def minimum_circle_heuristic(num_points):
         """
@@ -143,133 +132,25 @@ class MinimumCircle:
         return circle
 
     def plot_min_circle_random(self, sizes, path=None, show=False):
-        """Plot minimum circles for randomly generated point sets of varying sizes.
-
-        Compares the exact algorithm and the heuristic side-by-side and
-        produces an additional runtime comparison chart.
-
-        Args:
-            sizes: List of point-set sizes to generate and evaluate.
-            path: Directory path to save PDF figures. None to skip saving.
-            show: If True, display each figure interactively.
-        """
-        time_heuristic = []
-        time_min_circle = []
-        for num_points in sizes:
-            x = np.random.standard_normal(num_points)
-            y = np.random.standard_normal(num_points)
-
-            points = []
-            for i in range(num_points):
-                points.append([x[i], y[i]])
-
-            start_time = time.time()
-            min_circle = self.minimum_circle(points)
-            end_time = time.time()
-            time_min_circle.append(end_time - start_time)
-
-            start_time = time.time()
-            min_circle_heuristic = self.minimum_circle_heuristic(points)
-            end_time = time.time()
-            time_heuristic.append(end_time - start_time)
-
-            print("MinCircle Center/Radius: " + str(min_circle[0]) + " / " + str(min_circle[1]))
-            print("Heuristic Center/Radius: " + str(min_circle_heuristic[0]) + " / " + str(min_circle_heuristic[1]))
-
-            min_circle_plt = plt.Circle(min_circle[0], min_circle[1], color=circle_color, clip_on=False, fill=False)
-            min_circle_heuristic_plt = plt.Circle(min_circle_heuristic[0], min_circle_heuristic[1], color=circle_color, clip_on=False, fill=False)
-            
-            fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(10, 5))
-            ax[0].set_title('MinCircle, size = ' + str(num_points))
-            ax[0].set_aspect(1)
-            ax[0].scatter(x, y, color=points_color)
-            ax[0].set_xlim((-10, 10))
-            ax[0].set_ylim((-10, 10))
-            ax[0].add_artist(min_circle_plt)
-            ax[0].plot(min_circle[0][0], min_circle[0][1], '+', color='orangered')
-
-            ax[1].set_title('Minimum Circle (Heuristic), size = ' + str(num_points))
-            ax[1].set_aspect(1)
-            ax[1].scatter(x, y, color=points_color)
-            ax[1].set_xlim((-10, 10))
-            ax[1].set_ylim((-10, 10))
-            ax[1].add_artist(min_circle_heuristic_plt)
-            ax[1].plot(min_circle[0][0], min_circle[0][1], '+', color="orangered")
-            
-            if path is not None:
-                plt.savefig(path + f'plot_min_circle_{str(num_points)}_points' + ".pdf")
-            if show is True:
-                plt.show()
-        fig = plt.figure(figsize=(5, 5))
-        plt.plot(sizes, time_min_circle, "indianred")
-        plt.plot(sizes, time_heuristic, "seagreen")
-        plt.xlabel('Input size')
-        plt.ylabel('time (s)')
-        plt.legend(["Minimum Circle", "Minimum Circle (Heuristic)"])
-        plt.grid(True)
-        if path is not None:
-            plt.savefig(path + "time.pdf")
-        if show is True:
-            plt.show()
+        """Deprecated: use cgeom.visualization.plot_min_circle_random() instead."""
+        import warnings
+        warnings.warn(
+            "MinimumCircle.plot_min_circle_random() is deprecated. "
+            "Use cgeom.visualization.plot_min_circle_random(mc_obj, sizes, path, show) instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        from cgeom.visualization import plot_min_circle_random
+        plot_min_circle_random(self, sizes, path, show)
 
     def plot_min_circle(self, data, path=None, show=False):
-        """Plot minimum circles for a given dataset.
-
-        Shows exact and heuristic results side-by-side with a runtime bar chart.
-
-        Args:
-            data: Array-like of 2D points.
-            path: Directory path to save PDF figures. None to skip saving.
-            show: If True, display each figure interactively.
-        """
-        time_heuristic = []
-        time_min_circle = []
-
-        start_time = time.time()
-        min_circle = self.minimum_circle(data)
-        end_time = time.time()
-        time_min_circle.append(end_time - start_time)
-
-        start_time = time.time()
-        min_circle_heuristic = self.minimum_circle_heuristic(data)
-        end_time = time.time()
-        time_heuristic.append(end_time - start_time)
-        
-        print("MinCircle Center/Radius: " + str(min_circle[0]) + " / " + str(min_circle[1]))
-        print("Heuristic Center/Radius: " + str(min_circle_heuristic[0]) + " / " + str(min_circle_heuristic[1]))
-
-        min_circle_plt = plt.Circle(min_circle[0], min_circle[1], color=circle_color, clip_on=False, fill=False)
-        min_circle_heuristic_plt = plt.Circle(min_circle_heuristic[0], min_circle_heuristic[1], color=circle_color, clip_on=False, fill=False)
-        fig, (ax1, ax2) = plt.subplots(1, 2)
-        ax1.set_title('MinCircle, points.txt')
-        ax1.set_aspect(1)
-        ax1.scatter(data[:, 0], data[:, 1], color=points_color)
-        ax1.set_xlim((0, 800))
-        ax1.set_ylim((0, 800))
-        ax1.add_artist(min_circle_plt)
-        ax1.plot(min_circle[0][0], min_circle[0][1], '+', color="orangered")
-
-        ax2.set_title('Heuristc, points.txt')
-        ax2.set_aspect(1)
-        ax2.scatter(data[:, 0], data[:, 1], color=points_color)
-        ax2.set_xlim((0, 800))
-        ax2.set_ylim((0, 800))
-        ax2.add_artist(min_circle_heuristic_plt)
-        ax2.plot(min_circle[0][0], min_circle[0][1], '+', color="orangered")
-        
-        if path is not None:
-            plt.savefig(path + f'plot_min_circle' + ".pdf")
-        if show is True:
-            plt.show()
-
-        fig = plt.figure(figsize=(5, 5))
-        
-        times = pd.DataFrame({"time_min_circle": time_min_circle, "time_heuristic": time_heuristic})
-        times.plot(kind = 'bar', color = ["indianred", "seagreen"])
-        plt.legend(["Minimum Circle", "Minimum Circle (Heuristic)"])
-        plt.grid(True)
-        
-        if path is not None:
-            plt.savefig(path + "time.pdf")
-        if show is True:
-            plt.show()
+        """Deprecated: use cgeom.visualization.plot_min_circle() instead."""
+        import warnings
+        warnings.warn(
+            "MinimumCircle.plot_min_circle() is deprecated. "
+            "Use cgeom.visualization.plot_min_circle(mc_obj, data, path, show) instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        from cgeom.visualization import plot_min_circle
+        plot_min_circle(self, data, path, show)

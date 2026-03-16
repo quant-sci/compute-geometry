@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import math
 import random
 
@@ -116,15 +115,16 @@ class PolygonTriangulation:
         return(diag_vertexes)
 
     def plot_triangulation(self):
-        """Plot the polygon and its triangulation diagonals."""
-        fig, ax = plt.subplots()
-        ax.set_aspect(1)
-        ax.set_title(self.poly_name)
-        x, y = zip(*np.append(self.poly, [self.poly[0]], axis=0))  # Adding the first vertex at the end, for ploting purposes
-        ax.plot(x, y, color = "blue")      # Plotting Polygon
-        for diag in self.diagonals:     # Plotting triangulation
-            ax.plot([diag[0][0], diag[1][0]], [diag[0][1], diag[1][1]], color = "blue")
-        plt.show()
+        """Deprecated: use cgeom.visualization.plot_triangulation() instead."""
+        import warnings
+        warnings.warn(
+            "PolygonTriangulation.plot_triangulation() is deprecated. "
+            "Use cgeom.visualization.plot_triangulation(tri_obj) instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        from cgeom.visualization import plot_triangulation
+        plot_triangulation(self)
 
 #   Function to generate random polygons
 
