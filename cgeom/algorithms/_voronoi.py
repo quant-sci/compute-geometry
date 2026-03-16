@@ -6,15 +6,39 @@ sns.set_style("whitegrid")
 sns.set_context("notebook", font_scale=1.2, rc={"lines.linewidth": 2.5})
 
 class VoronoiDiagram:
+    """Construct a Voronoi diagram for a set of 2D sites using incremental insertion.
+
+    Attributes:
+        data (np.ndarray): Array of site coordinates with shape (n, 2).
+        cells (list): List of Voronoi cells, each containing a site and its edges.
+    """
+
     def __init__(self, data):
-        # Initialize the Voronoi diagram with input data
+        """Initialize the Voronoi diagram with a set of 2D sites.
+
+        Args:
+            data: Collection of 2D points as a list, tuple, or numpy array
+                with shape (n, 2). The first two points must have different
+                y-coordinates.
+
+        Raises:
+            pydantic.ValidationError: If fewer than 2 points, first two share
+                a y-coordinate, non-numeric, or wrong shape.
+        """
         from cgeom.elements.models import VoronoiDiagramInput
         validated = VoronoiDiagramInput(points=data)
         self.data = np.array(validated.points)
         self.cells = []
 
     def search_for_cell(self, point):
-        # Search for the cell that contains the given point
+        """Find the index of the Voronoi cell whose site is nearest to *point*.
+
+        Args:
+            point: A 2D coordinate [x, y].
+
+        Returns:
+            int: Index of the nearest cell in ``self.cells``.
+        """
         dist = float("inf")
         for i, cell in enumerate(self.cells):
             aux = np.sqrt((point[0] - cell[0][0])**2 + (point[1] - cell[0][1])**2)
@@ -24,7 +48,15 @@ class VoronoiDiagram:
         return pos
 
     def search_for_cell_by_edge(self, edge_ref, origin_cell):
-        # Search for the cell containing a given edge reference and originating cell
+        """Find a neighbouring cell that shares the given edge.
+
+        Args:
+            edge_ref: Reference edge as ``[[x1, y1, ...], [x2, y2, ...]]``.
+            origin_cell: Index of the cell to exclude from the search.
+
+        Returns:
+            int: Index of the neighbouring cell that contains *edge_ref*.
+        """
         precision = 0.8
         for i, cell in enumerate(self.cells):
             for j, edge in enumerate(cell[1]):
@@ -47,7 +79,16 @@ class VoronoiDiagram:
         return output
 
     def adapt_cell(self, visited_cell, edge_added, point_added):
-        # Adapt the cell based on the visited cell, added edge, and added point
+        """Update an existing cell after a new site is inserted.
+
+        Clips or removes edges that are closer to *point_added* than to the
+        cell's own site, and appends the new bisector edge.
+
+        Args:
+            visited_cell: Index of the cell to update.
+            edge_added: The new bisector edge to insert.
+            point_added: The newly added site coordinates.
+        """
         drop = []
         for i, edge in enumerate(self.cells[visited_cell][1]):
             A = edge[0]
@@ -94,7 +135,20 @@ class VoronoiDiagram:
             self.cells[visited_cell][1].remove(element)
 
     def make_edge(self, cell, p):
-        # Make an edge for the given cell and point
+        """Compute the bisector edge between a cell's site and a new point.
+
+        The bisector is intersected with the cell's existing edges to
+        determine its extent.
+
+        Args:
+            cell: Index of the existing cell.
+            p: The new point [x, y].
+
+        Returns:
+            tuple: ``(edge_endpoints, neighbour_indices)`` where
+                *edge_endpoints* is a list of intersection points and
+                *neighbour_indices* lists the adjacent cells crossed.
+        """
         C = self.cells[cell][0]
         M = [round((C[0] + p[0]) / 2, 4), round((C[1] + p[1]) / 2, 4)]
         V_1 = [C[0] - M[0], C[1] - M[1]]
@@ -173,7 +227,15 @@ class VoronoiDiagram:
         return output, NEIGHBOURS
 
     def construct_cell(self, cell, p):
-        # Construct a cell for the given cell index and point
+        """Construct a new Voronoi cell for point *p* by traversing neighbours.
+
+        Args:
+            cell: Index of the starting cell (the one containing *p*).
+            p: The new site coordinates.
+
+        Returns:
+            list: A cell entry ``[site, edges]`` for the new site.
+        """
         edges, VISITED = [], []
         edge, NEIGHBOURS = self.make_edge(cell, p)
         VISITED.append(cell)
@@ -200,7 +262,11 @@ class VoronoiDiagram:
         return [p, edges]
 
     def build_voronoi_diagram(self):
-        # Build the Voronoi diagram based on the input data
+        """Build the full Voronoi diagram by incrementally inserting each site.
+
+        Returns:
+            list: The list of Voronoi cells (also stored in ``self.cells``).
+        """
         mid = [(self.data[1][0] + self.data[0][0]) / 2, (self.data[1][1] + self.data[0][1]) / 2]
         V = [self.data[0][0] - mid[0], self.data[0][1] - mid[1]]
         self.cells.append(
@@ -233,7 +299,11 @@ class VoronoiDiagram:
         return self.cells
     
     def plot_voronoi(self, cells):
-        # Plot the Voronoi diagram
+        """Plot the Voronoi diagram showing sites and cell edges.
+
+        Args:
+            cells: The cell list returned by :meth:`build_voronoi_diagram`.
+        """
         data = np.array(self.data)
         fig, ax = plt.subplots(figsize = (6, 6))
         ax.scatter(data[:, 0], data[:, 1], color='navy', label = 'Pontos')
