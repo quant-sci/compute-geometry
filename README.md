@@ -8,6 +8,8 @@
 
 **compute-geometry** is a research-focused computational geometry library for Python. This library is designed to provide a set of tools and algorithms for solving geometric problems.
 
+[ROADMAP](ROADMAP.md)
+
 ## Installation
 
 You can install the **compute-geometry** library using `uv`:
