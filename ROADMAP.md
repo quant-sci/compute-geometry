@@ -26,6 +26,7 @@ Development roadmap for `compute-geometry`.
 - [ ] Type hints throughout
 - [ ] Comprehensive documentation site (Sphinx)
 - [ ] More example scripts
+- [ ] Change the plots design for a better experience
 
 ## v0.1.5 — 3D Meshes
 
