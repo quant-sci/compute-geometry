@@ -1,22 +1,10 @@
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-sns.set_style("whitegrid")
-sns.set_context("notebook", font_scale=1.2, rc={"lines.linewidth": 2.5})
-
-hull_color = "lightslategray"
-points_color = "navy"
-
 import numpy as np
 import math
-import time
-
-np.random.seed(42)
 
 class ConvexHull:
     """Class to find the convex hull of a set of points using the Gift Wrapping algorithm""
-    
-    Reference: 
+
+    Reference:
         R.A. Jarvis, On the identification of the convex hull of a finite set of points in the plane, Information Processing Letters,
         Volume 2, Issue 1, 1973, Pages 18-21, ISSN 0020-0190, https://doi.org/10.1016/0020-0190(73)90020-3.
 
@@ -99,20 +87,16 @@ class ConvexHull:
         return ch
 
     def plot(self, title='Convex Hull for a set of points'):
-        """Plot the points and their convex hull.
-
-        Args:
-            title: Title for the matplotlib figure.
-        """
-        plt.title(title)
-        plt.grid(True)
-        plt.scatter(self.points[:, 0], self.points[:, 1])
-        ch = self.convex_hull()
-        for i in range(len(ch)):
-            if i != len(ch) - 1:
-                plt.plot([ch[i][0], ch[i + 1][0]], [ch[i][1], ch[i + 1][1]], color=hull_color)
-            else:
-                plt.plot([ch[i][0], ch[0][0]], [ch[i][1], ch[0][1]], color=hull_color)
+        """Deprecated: use cgeom.visualization.plot_convex_hull() instead."""
+        import warnings
+        warnings.warn(
+            "ConvexHull.plot() is deprecated. "
+            "Use cgeom.visualization.plot_convex_hull(hull_obj, title) instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        from cgeom.visualization import plot_convex_hull
+        plot_convex_hull(self, title)
 
     def get_indexes(self):
         """Get the indices of the convex hull vertices in the original points array.
