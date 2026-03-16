@@ -71,6 +71,7 @@ def plot_convex_hull(hull_obj, title="Convex Hull"):
     )
 
     plt.tight_layout()
+    plt.show()
 
 
 # ---------------------------------------------------------------------------
@@ -279,3 +280,4 @@ def plot_voronoi(voronoi_obj, cells):
     ax.set_ylim(data[:, 1].min() - pad_y, data[:, 1].max() + pad_y)
 
     plt.tight_layout()
+    plt.show()
