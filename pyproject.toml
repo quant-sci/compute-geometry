@@ -3,7 +3,7 @@ name = "compute-geometry"
 version = "0.1.2"
 description = "Computational Geometry Library"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.12"
 authors = [
     { name = "Kleyton da Costa", email = "kleyton.vsc@gmail.com" },
 ]
