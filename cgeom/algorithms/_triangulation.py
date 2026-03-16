@@ -4,15 +4,45 @@ import math
 import random
 
 class PolygonTriangulation:
+    """Triangulate a simple polygon using the ear-clipping algorithm.
+
+    Attributes:
+        poly (np.ndarray): Array of polygon vertices with shape (n, 2).
+        poly_name (str): Display name for the polygon.
+        diagonals (list): List of diagonals produced by the triangulation.
+    """
+
     def __init__(self, poly, poly_name="Polygon"):
+        """Initialize and triangulate a polygon.
+
+        Args:
+            poly: Polygon vertices as a list, tuple, or numpy array with shape (n, 2).
+                Vertices must be in counter-clockwise order.
+            poly_name: Display name used in plot titles.
+
+        Raises:
+            pydantic.ValidationError: If fewer than 3 vertices, all collinear,
+                non-numeric, or wrong shape.
+        """
         from cgeom.elements.models import PolygonTriangulationInput
         validated = PolygonTriangulationInput(poly=poly, poly_name=poly_name)
         self.poly = np.array(validated.poly)
         self.poly_name = validated.poly_name
         self.diagonals = self.Triangulation()
 
-    def is_ear(self, poly, vertex):  # Function to define if a given vertex is an ear or not
+    def is_ear(self, poly, vertex):
+        """Determine whether the given vertex is an ear of the polygon.
 
+        A vertex is an ear if the triangle formed by it and its two neighbours
+        is oriented counter-clockwise and contains no other polygon vertices.
+
+        Args:
+            poly: Current polygon vertex array.
+            vertex: Index of the vertex to test.
+
+        Returns:
+            bool: True if the vertex is an ear.
+        """
         # First, we start testing if the line lays inside the polygon by analysing the triangle made by vertex, vertex+1, vertex-1
 
         p1 = poly[vertex]
@@ -47,7 +77,12 @@ class PolygonTriangulation:
                 if lambda1 > 0 and lambda2 > 0 and lambda3 > 0: return False
             return True
 
-    def Triangulation(self):    # Main function to triangulate the polygon
+    def Triangulation(self):
+        """Triangulate the polygon by iteratively clipping ears.
+
+        Returns:
+            list: List of diagonals, where each diagonal is a pair of [x, y] points.
+        """
         poly = self.poly
         diag = []   # List of diagonals
         vertex = 0
@@ -64,6 +99,11 @@ class PolygonTriangulation:
         return diag
 
     def get_diag_vertexes(self):
+        """Get the vertex indices of each triangulation diagonal.
+
+        Returns:
+            list[list[int]]: Pairs of indices into ``self.poly`` for each diagonal.
+        """
         diag_vertexes = []
         for i, diagonal in enumerate(self.diagonals):
             for vertex in diagonal:
@@ -76,6 +116,7 @@ class PolygonTriangulation:
         return(diag_vertexes)
 
     def plot_triangulation(self):
+        """Plot the polygon and its triangulation diagonals."""
         fig, ax = plt.subplots()
         ax.set_aspect(1)
         ax.set_title(self.poly_name)
@@ -88,7 +129,19 @@ class PolygonTriangulation:
 #   Function to generate random polygons
 
 def generatePolygon( ctrX, ctrY, aveRadius, irregularity, spikeyness, numVerts ):
+    """Generate a random simple polygon.
 
+    Args:
+        ctrX: X-coordinate of the polygon centre.
+        ctrY: Y-coordinate of the polygon centre.
+        aveRadius: Average radius from centre to vertices.
+        irregularity: Parameter in [0, 1] controlling angular variance.
+        spikeyness: Parameter in [0, 1] controlling radial variance.
+        numVerts: Number of vertices.
+
+    Returns:
+        list[tuple[int, int]]: Vertices of the generated polygon.
+    """
     irregularity = clip( irregularity, 0,1 ) * 2*math.pi / numVerts
     spikeyness = clip( spikeyness, 0,1 ) * aveRadius
 
@@ -121,6 +174,16 @@ def generatePolygon( ctrX, ctrY, aveRadius, irregularity, spikeyness, numVerts )
     return points
 
 def clip(x, min, max) :
+    """Clamp *x* to the range [min, max].
+
+    Args:
+        x: Value to clamp.
+        min: Lower bound.
+        max: Upper bound.
+
+    Returns:
+        The clamped value.
+    """
     if( min > max ) :  return x
     elif( x < min ) :  return min
     elif( x > max ) :  return max

@@ -24,11 +24,26 @@ class ConvexHull:
         points (np.array): Array of points
     """
     def __init__(self, points):
+        """Initialize the convex hull with a set of 2D points.
+
+        Args:
+            points: Collection of 2D points as a list, tuple, or numpy array
+                with shape (n, 2).
+
+        Raises:
+            pydantic.ValidationError: If fewer than 3 points, all collinear,
+                non-numeric, or wrong shape.
+        """
         from cgeom.elements.models import ConvexHullInput
         validated = ConvexHullInput(points=points)
         self.points = np.array(validated.points)
 
     def find_low_right(self):
+        """Find the point with the lowest y-coordinate (rightmost if tied).
+
+        Returns:
+            list: The [x, y] coordinates of the lowest-rightmost point.
+        """
         lower_y = float("inf")
         for point in self.points:
             if point[1] < lower_y:
@@ -37,6 +52,17 @@ class ConvexHull:
         return list(lower)
 
     def low_angle(self, b, c):
+        """Find the point that makes the smallest angle from vector c->b.
+
+        Used by the Gift Wrapping algorithm to select the next hull vertex.
+
+        Args:
+            b: Current point on the hull boundary.
+            c: Previous point (defines the reference direction).
+
+        Returns:
+            list: The [x, y] coordinates of the point with the lowest angle.
+        """
         low_angle = float("inf")
         for a in self.points:
             if a[0] != b[0] or a[1] != b[1]:
@@ -57,6 +83,11 @@ class ConvexHull:
         return list(low_point)
 
     def convex_hull(self):
+        """Compute the convex hull using the Gift Wrapping (Jarvis march) algorithm.
+
+        Returns:
+            list[list]: Ordered list of [x, y] vertices forming the convex hull.
+        """
         a = self.find_low_right()
         b = self.low_angle(a, [1, a[1]])
         init = a
@@ -68,6 +99,11 @@ class ConvexHull:
         return ch
 
     def plot(self, title='Convex Hull for a set of points'):
+        """Plot the points and their convex hull.
+
+        Args:
+            title: Title for the matplotlib figure.
+        """
         plt.title(title)
         plt.grid(True)
         plt.scatter(self.points[:, 0], self.points[:, 1])
@@ -79,6 +115,11 @@ class ConvexHull:
                 plt.plot([ch[i][0], ch[0][0]], [ch[i][1], ch[0][1]], color=hull_color)
 
     def get_indexes(self):
+        """Get the indices of the convex hull vertices in the original points array.
+
+        Returns:
+            list[int]: Indices into ``self.points`` for each hull vertex.
+        """
         indexes = []
         for element in self.convex_hull():
             j = 0

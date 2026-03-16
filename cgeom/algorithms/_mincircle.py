@@ -14,6 +14,12 @@ circle_color = "lightslategray"
 points_color = "navy"
 
 class MinimumCircle:
+    """Find the minimum enclosing circle for a set of 2D points.
+
+    Provides both an exact randomized incremental algorithm and a
+    faster heuristic approximation.
+    """
+
     def __init__(self):
         pass
     
@@ -136,8 +142,17 @@ class MinimumCircle:
                 circle = self.min_circle_with_point(random_perm[0:i], random_perm[i])
         return circle
 
-    def plot_min_circle_random(self, sizes, path=None, show = False):
+    def plot_min_circle_random(self, sizes, path=None, show=False):
+        """Plot minimum circles for randomly generated point sets of varying sizes.
 
+        Compares the exact algorithm and the heuristic side-by-side and
+        produces an additional runtime comparison chart.
+
+        Args:
+            sizes: List of point-set sizes to generate and evaluate.
+            path: Directory path to save PDF figures. None to skip saving.
+            show: If True, display each figure interactively.
+        """
         time_heuristic = []
         time_min_circle = []
         for num_points in sizes:
@@ -198,6 +213,15 @@ class MinimumCircle:
             plt.show()
 
     def plot_min_circle(self, data, path=None, show=False):
+        """Plot minimum circles for a given dataset.
+
+        Shows exact and heuristic results side-by-side with a runtime bar chart.
+
+        Args:
+            data: Array-like of 2D points.
+            path: Directory path to save PDF figures. None to skip saving.
+            show: If True, display each figure interactively.
+        """
         time_heuristic = []
         time_min_circle = []
 
