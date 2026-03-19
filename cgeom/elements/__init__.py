@@ -4,5 +4,6 @@ from .models import (
     DelaunayTriangulationInput,
     MinimumCircleInput,
     PolygonTriangulationInput,
+    SegmentIntersectionInput,
     VoronoiDiagramInput,
 )
