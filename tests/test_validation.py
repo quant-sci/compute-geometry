@@ -13,6 +13,7 @@ from cgeom.elements.models import (
     DelaunayTriangulationInput,
     MinimumCircleInput,
     PolygonTriangulationInput,
+    SegmentIntersectionInput,
     VoronoiDiagramInput,
 )
 from cgeom.algorithms import (
@@ -20,6 +21,7 @@ from cgeom.algorithms import (
     DelaunayTriangulation,
     MinimumCircle,
     PolygonTriangulation,
+    SegmentIntersection,
     VoronoiDiagram,
 )
 
@@ -198,3 +200,60 @@ class TestDelaunayTriangulationValidation:
     def test_integration_rejects_bad_input(self):
         with pytest.raises(ValidationError):
             DelaunayTriangulation([[0, 0], [1, 1]])
+
+
+# ---------------------------------------------------------------------------
+# SegmentIntersectionInput
+# ---------------------------------------------------------------------------
+
+class TestSegmentIntersectionValidation:
+
+    def test_too_few_segments(self):
+        with pytest.raises(ValidationError, match="at least 2 segments"):
+            SegmentIntersectionInput(segments=[[[0, 0], [1, 1]]])
+
+    def test_zero_length_segment(self):
+        with pytest.raises(ValidationError, match="zero length"):
+            SegmentIntersectionInput(
+                segments=[[[0, 0], [0, 0]], [[1, 0], [2, 0]]]
+            )
+
+    def test_non_numeric(self):
+        with pytest.raises(ValidationError, match="numeric"):
+            SegmentIntersectionInput(
+                segments=[[["a", "b"], ["c", "d"]], [["e", "f"], ["g", "h"]]]
+            )
+
+    def test_wrong_shape(self):
+        with pytest.raises(ValidationError, match="shape"):
+            SegmentIntersectionInput(segments=[[0, 0], [1, 1]])
+
+    def test_duplicate_warning(self):
+        with pytest.warns(UserWarning, match="Duplicate"):
+            SegmentIntersectionInput(
+                segments=[
+                    [[0, 0], [1, 1]],
+                    [[0, 0], [1, 1]],
+                    [[2, 0], [3, 1]],
+                ]
+            )
+
+    def test_valid_input_formats(self):
+        # list
+        result = SegmentIntersectionInput(
+            segments=[[[0, 0], [1, 1]], [[0, 1], [1, 0]]]
+        )
+        assert len(result.segments) == 2
+        # ndarray
+        arr = np.array([[[0, 0], [1, 1]], [[0, 1], [1, 0]]], dtype=float)
+        result = SegmentIntersectionInput(segments=arr)
+        assert len(result.segments) == 2
+        # tuples
+        result = SegmentIntersectionInput(
+            segments=[((0, 0), (1, 1)), ((0, 1), (1, 0))]
+        )
+        assert len(result.segments) == 2
+
+    def test_integration_rejects_bad_input(self):
+        with pytest.raises(ValidationError):
+            SegmentIntersection([[[0, 0], [0, 0]], [[1, 0], [2, 0]]])

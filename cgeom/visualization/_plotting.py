@@ -300,6 +300,45 @@ def plot_delaunay(dt_obj, title="Delaunay Triangulation", show_circumcircles=Fal
     plt.show()
 
 
+def plot_intersections(si_obj, title="Segment Intersections"):
+    """Plot segments and their intersection points.
+
+    Args:
+        si_obj: A ``SegmentIntersection`` instance.
+        title: Title for the matplotlib figure.
+    """
+    fig, ax = _new_fig()
+    _style_ax(ax, title)
+    ax.set_aspect(1)
+
+    segs = si_obj.get_segments()
+    intersections = si_obj.find_intersections()
+
+    # Draw segments
+    for seg in segs:
+        ax.plot(
+            [seg[0][0], seg[1][0]], [seg[0][1], seg[1][1]],
+            color=_C1, linewidth=1.2, zorder=2,
+        )
+
+    # Segment endpoints
+    endpoints_x = [p[0] for seg in segs for p in seg]
+    endpoints_y = [p[1] for seg in segs for p in seg]
+    ax.scatter(endpoints_x, endpoints_y, c=[_C0], s=30, zorder=3, linewidths=0)
+
+    # Intersection points
+    if intersections:
+        ix = [p[0] for p in intersections]
+        iy = [p[1] for p in intersections]
+        ax.scatter(
+            ix, iy, c=[_C0], s=60, zorder=5,
+            marker="X", edgecolors="white", linewidths=0.8,
+        )
+
+    plt.tight_layout()
+    plt.show()
+
+
 def plot_voronoi(voronoi_obj, cells):
     """Plot the Voronoi diagram showing sites and cell edges.
 

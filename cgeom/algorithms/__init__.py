@@ -20,10 +20,15 @@ from ._delaunay import (
     DelaunayTriangulation,
 )
 
+from ._intersection import (
+    SegmentIntersection,
+)
+
 __all__ = [
     'MinimumCircle',
     'ConvexHull',
     'PolygonTriangulation',
     'VoronoiDiagram',
     'DelaunayTriangulation',
+    'SegmentIntersection',
 ]
