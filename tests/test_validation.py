@@ -10,12 +10,14 @@ from pydantic import ValidationError
 
 from cgeom.elements.models import (
     ConvexHullInput,
+    DelaunayTriangulationInput,
     MinimumCircleInput,
     PolygonTriangulationInput,
     VoronoiDiagramInput,
 )
 from cgeom.algorithms import (
     ConvexHull,
+    DelaunayTriangulation,
     MinimumCircle,
     PolygonTriangulation,
     VoronoiDiagram,
@@ -153,3 +155,46 @@ class TestVoronoiDiagramValidation:
     def test_integration_rejects_same_y(self):
         with pytest.raises(ValidationError):
             VoronoiDiagram([[0, 5], [3, 5]])
+
+
+# ---------------------------------------------------------------------------
+# DelaunayTriangulationInput
+# ---------------------------------------------------------------------------
+
+class TestDelaunayTriangulationValidation:
+
+    def test_too_few_points(self):
+        with pytest.raises(ValidationError, match="at least 3 points"):
+            DelaunayTriangulationInput(points=[[0, 0], [1, 1]])
+
+    def test_collinear_points(self):
+        with pytest.raises(ValidationError, match="collinear"):
+            DelaunayTriangulationInput(points=[[0, 0], [1, 1], [2, 2]])
+
+    def test_non_numeric(self):
+        with pytest.raises(ValidationError, match="numeric"):
+            DelaunayTriangulationInput(points=[["a", "b"], ["c", "d"], ["e", "f"]])
+
+    def test_wrong_shape_3d(self):
+        with pytest.raises(ValidationError, match="shape"):
+            DelaunayTriangulationInput(points=[[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+
+    def test_duplicate_warning(self):
+        with pytest.warns(UserWarning, match="Duplicate"):
+            DelaunayTriangulationInput(points=[[0, 0], [4, 0], [2, 3], [0, 0]])
+
+    def test_valid_input_formats(self):
+        # list
+        result = DelaunayTriangulationInput(points=[[0, 0], [4, 0], [2, 3]])
+        assert len(result.points) == 3
+        # ndarray
+        arr = np.array([[0, 0], [4, 0], [2, 3]], dtype=float)
+        result = DelaunayTriangulationInput(points=arr)
+        assert len(result.points) == 3
+        # tuple
+        result = DelaunayTriangulationInput(points=[(0, 0), (4, 0), (2, 3)])
+        assert len(result.points) == 3
+
+    def test_integration_rejects_bad_input(self):
+        with pytest.raises(ValidationError):
+            DelaunayTriangulation([[0, 0], [1, 1]])

@@ -254,6 +254,52 @@ def plot_triangulation(tri_obj):
 # Voronoi
 # ---------------------------------------------------------------------------
 
+def plot_delaunay(dt_obj, title="Delaunay Triangulation", show_circumcircles=False):
+    """Plot the Delaunay triangulation.
+
+    Args:
+        dt_obj: A ``DelaunayTriangulation`` instance.
+        title: Title for the matplotlib figure.
+        show_circumcircles: If True, draw dashed circumcircles for each triangle.
+    """
+    fig, ax = _new_fig()
+    _style_ax(ax, title)
+    ax.set_aspect(1)
+
+    triangles = dt_obj.get_triangles()
+    edges = dt_obj.get_edges()
+
+    # Light triangle fill
+    for tri in triangles:
+        xs = [p[0] for p in tri] + [tri[0][0]]
+        ys = [p[1] for p in tri] + [tri[0][1]]
+        ax.fill(xs, ys, facecolor=(*_C2[:3], 0.06), edgecolor="none", zorder=1)
+
+    # Edges
+    for edge in edges:
+        ax.plot([edge[0][0], edge[1][0]], [edge[0][1], edge[1][1]],
+                color=_C1, linewidth=1.2, zorder=2)
+
+    # Circumcircles
+    if show_circumcircles:
+        for circ in dt_obj.get_circumcircles():
+            circle_patch = plt.Circle(
+                circ[0], circ[1],
+                facecolor="none", edgecolor=(*_C1[:3], 0.6),
+                linewidth=1.0, linestyle="--", zorder=3,
+            )
+            ax.add_patch(circle_patch)
+
+    # Points on top
+    ax.scatter(
+        dt_obj.points[:, 0], dt_obj.points[:, 1],
+        c=[_C0], s=36, zorder=4, edgecolors="white", linewidths=0.5,
+    )
+
+    plt.tight_layout()
+    plt.show()
+
+
 def plot_voronoi(voronoi_obj, cells):
     """Plot the Voronoi diagram showing sites and cell edges.
 

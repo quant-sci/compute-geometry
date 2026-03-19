@@ -175,3 +175,38 @@ class VoronoiDiagramInput(BaseModel):
             warnings.warn("Duplicate points detected", UserWarning)
 
         return {"points": points}
+
+
+class DelaunayTriangulationInput(BaseModel):
+    """Validation model for DelaunayTriangulation inputs."""
+
+    points: List[List[float]]
+
+    @model_validator(mode="before")
+    @classmethod
+    def validate_input(cls, data):
+        if isinstance(data, dict):
+            raw = data.get("points")
+        else:
+            raw = data
+
+        points = _to_point_list(raw)
+
+        if len(points) < 3:
+            raise ValueError(
+                "Delaunay triangulation requires at least 3 points"
+            )
+
+        if _all_collinear(points):
+            raise ValueError(
+                "All points are collinear; triangulation is undefined"
+            )
+
+        if _has_duplicates(points):
+            warnings.warn(
+                "Duplicate points detected; they will be included but may "
+                "not affect the triangulation",
+                UserWarning,
+            )
+
+        return {"points": points}
