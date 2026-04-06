@@ -1,7 +1,3 @@
-<h1 align="left">
-<img src="public/logo.png" width="100">
-</h1>
-
 [![PyPI](https://img.shields.io/pypi/v/compute-geometry)](https://pypi.org/project/compute-geometry/)
 [![GitHub](https://img.shields.io/github/license/kleyt0n/compute-geometry)](https://github.com/kleyt0n/compute-geometry/blob/master/LICENSE)
 
