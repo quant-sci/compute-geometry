@@ -81,6 +81,7 @@ myst_heading_anchors = 3
 html_theme = "furo"
 html_title = "compute-geometry"
 html_static_path = ["_static"]
+html_css_files = ["custom.css"]
 html_logo = "../public/logo.svg"
 html_favicon = "../public/logo.svg"
 
