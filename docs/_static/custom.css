@@ -1,0 +1,6 @@
+/* Rounded borders on the plots/figures rendered in the page content.
+   Scoped to the main article so the sidebar logo is left untouched. */
+.content img {
+  border-radius: 12px;
+  border: 1px solid var(--color-background-border);
+}

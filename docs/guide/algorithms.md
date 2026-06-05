@@ -85,11 +85,14 @@ si.get_intersection_pairs()          # (i, j, point) tuples
 
 ## PolygonTriangulation
 
-Triangulates a simple polygon.
+Triangulates a simple polygon by ear clipping. The polygon is triangulated on
+construction, so the diagonals are available immediately — there is no separate
+`triangulate()` call.
 
 ```python
-pt = PolygonTriangulation([[0, 0], [4, 0], [4, 4], [0, 4]])
-pt.triangulate()
+pt = PolygonTriangulation([[0, 0], [4, 0], [4, 4], [2, 2], [0, 4]])
+pt.diagonals             # the diagonals added, [[[x1, y1], [x2, y2]], ...]
+pt.get_diag_vertexes()   # the same diagonals as vertex-index pairs
 ```
 
 ## Input validation
