@@ -3,10 +3,10 @@ from cgeom.visualization import plot_intersections
 
 # create a list of segments: X cross + horizontal + vertical
 segments = [
-    [[0, 0], [4, 4]],   # diagonal /
-    [[0, 4], [4, 0]],   # diagonal \
-    [[0, 2], [4, 2]],   # horizontal
-    [[2, 0], [2, 4]],   # vertical
+    [[0, 0], [4, 4]],  # diagonal /
+    [[0, 4], [4, 0]],  # diagonal \
+    [[0, 2], [4, 2]],  # horizontal
+    [[2, 0], [2, 4]],  # vertical
 ]
 
 # create a SegmentIntersection object

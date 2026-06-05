@@ -1,6 +1,8 @@
-import numpy as np
 import math
 import random
+
+import numpy as np
+
 
 class PolygonTriangulation:
     """Triangulate a simple polygon using the ear-clipping algorithm.
@@ -24,6 +26,7 @@ class PolygonTriangulation:
                 non-numeric, or wrong shape.
         """
         from cgeom.elements.models import PolygonTriangulationInput
+
         validated = PolygonTriangulationInput(poly=poly, poly_name=poly_name)
         self.poly = np.array(validated.poly)
         self.poly_name = validated.poly_name
@@ -45,7 +48,9 @@ class PolygonTriangulation:
         # First, we start testing if the line lays inside the polygon by analysing the triangle made by vertex, vertex+1, vertex-1
 
         p1 = poly[vertex]
-        if vertex == len(poly) - 1: # If the vertex is in the last position, vertex + 1 is the first vertex
+        if (
+            vertex == len(poly) - 1
+        ):  # If the vertex is in the last position, vertex + 1 is the first vertex
             p2 = poly[0]
         else:
             p2 = poly[vertex + 1]
@@ -57,23 +62,58 @@ class PolygonTriangulation:
 
         # Now we need to find the triangle's orientation
 
-        orient = v1[0] * v2[1] + v3[0] * v1[1] + v2[0] * v3[1] - v3[0] * v2[1] - v3[1] * v1[0] - v2[0] * v1[1]
+        orient = (
+            v1[0] * v2[1]
+            + v3[0] * v1[1]
+            + v2[0] * v3[1]
+            - v3[0] * v2[1]
+            - v3[1] * v1[0]
+            - v2[0] * v1[1]
+        )
 
         if orient <= 0:
             return False
         else:
-
             # Finally, we need to check if any other vertex is inside the triangle made by vertex-1, vertex and vertex+1
 
             for i, p in enumerate(poly):
-                D = p1[0] * p2[1] + p2[0] * p3[1] + p3[0] * p1[1] - p2[1] * p3[0] - p1[0] * p3[1] - p1[1] * p2[0]
-                D1 = p[0] * p2[1] + p2[0] * p3[1] + p3[0] * p[1] - p2[1] * p3[0] - p3[1] * p[0] - p[1] * p2[0]
-                D2 = p1[0] * p[1] + p[0] * p3[1] + p3[0] * p1[1] - p[1] * p3[0] - p3[1] * p1[0] - p1[1] * p[0]
-                D3 = p1[0] * p2[1] + p2[0] * p[1] + p[0] * p1[1] - p2[1] * p[0] - p[1] * p1[0] - p1[1] * p2[0]
+                D = (
+                    p1[0] * p2[1]
+                    + p2[0] * p3[1]
+                    + p3[0] * p1[1]
+                    - p2[1] * p3[0]
+                    - p1[0] * p3[1]
+                    - p1[1] * p2[0]
+                )
+                D1 = (
+                    p[0] * p2[1]
+                    + p2[0] * p3[1]
+                    + p3[0] * p[1]
+                    - p2[1] * p3[0]
+                    - p3[1] * p[0]
+                    - p[1] * p2[0]
+                )
+                D2 = (
+                    p1[0] * p[1]
+                    + p[0] * p3[1]
+                    + p3[0] * p1[1]
+                    - p[1] * p3[0]
+                    - p3[1] * p1[0]
+                    - p1[1] * p[0]
+                )
+                D3 = (
+                    p1[0] * p2[1]
+                    + p2[0] * p[1]
+                    + p[0] * p1[1]
+                    - p2[1] * p[0]
+                    - p[1] * p1[0]
+                    - p1[1] * p2[0]
+                )
                 lambda1 = D1 / D
                 lambda2 = D2 / D
                 lambda3 = D3 / D
-                if lambda1 > 0 and lambda2 > 0 and lambda3 > 0: return False
+                if lambda1 > 0 and lambda2 > 0 and lambda3 > 0:
+                    return False
             return True
 
     def Triangulation(self):
@@ -83,17 +123,19 @@ class PolygonTriangulation:
             list: List of diagonals, where each diagonal is a pair of [x, y] points.
         """
         poly = self.poly
-        diag = []   # List of diagonals
+        diag = []  # List of diagonals
         vertex = 0
-        while len(poly) > 3:    # The loop runs until only one triangle is left
-            if vertex >= len(poly):     # When the loop reaches the last vertex
+        while len(poly) > 3:  # The loop runs until only one triangle is left
+            if vertex >= len(poly):  # When the loop reaches the last vertex
                 vertex = 0
-            if self.is_ear(poly, vertex):   # Test if the vertex is an ear
-                if vertex == len(poly) - 1:     # If the vertex is in the last position, vertex + 1 is the first vertex
+            if self.is_ear(poly, vertex):  # Test if the vertex is an ear
+                if (
+                    vertex == len(poly) - 1
+                ):  # If the vertex is in the last position, vertex + 1 is the first vertex
                     diag.append([list(poly[vertex - 1]), list(poly[0])])
                 else:
                     diag.append([list(poly[vertex - 1]), list(poly[vertex + 1])])
-                poly = np.delete(poly, vertex, 0)   # Remove the vertex
+                poly = np.delete(poly, vertex, 0)  # Remove the vertex
             vertex += 1
         return diag
 
@@ -107,16 +149,19 @@ class PolygonTriangulation:
         for i, diagonal in enumerate(self.diagonals):
             for vertex in diagonal:
                 index = 0
-                while vertex[0] != self.poly[index][0] or vertex[1] != self.poly[index][1]:
+                while (
+                    vertex[0] != self.poly[index][0] or vertex[1] != self.poly[index][1]
+                ):
                     index += 1
                 diag_vertexes.append(index)
-            diag_vertexes[i] = [diag_vertexes[-2],diag_vertexes[-1]]
+            diag_vertexes[i] = [diag_vertexes[-2], diag_vertexes[-1]]
             del diag_vertexes[-1]
-        return(diag_vertexes)
+        return diag_vertexes
 
     def plot_triangulation(self):
         """Deprecated: use cgeom.visualization.plot_triangulation() instead."""
         import warnings
+
         warnings.warn(
             "PolygonTriangulation.plot_triangulation() is deprecated. "
             "Use cgeom.visualization.plot_triangulation(tri_obj) instead.",
@@ -124,11 +169,14 @@ class PolygonTriangulation:
             stacklevel=2,
         )
         from cgeom.visualization import plot_triangulation
+
         plot_triangulation(self)
+
 
 #   Function to generate random polygons
 
-def generatePolygon( ctrX, ctrY, aveRadius, irregularity, spikeyness, numVerts ):
+
+def generatePolygon(ctrX, ctrY, aveRadius, irregularity, spikeyness, numVerts):
     """Generate a random simple polygon.
 
     Args:
@@ -142,38 +190,39 @@ def generatePolygon( ctrX, ctrY, aveRadius, irregularity, spikeyness, numVerts )
     Returns:
         list[tuple[int, int]]: Vertices of the generated polygon.
     """
-    irregularity = clip( irregularity, 0,1 ) * 2*math.pi / numVerts
-    spikeyness = clip( spikeyness, 0,1 ) * aveRadius
+    irregularity = clip(irregularity, 0, 1) * 2 * math.pi / numVerts
+    spikeyness = clip(spikeyness, 0, 1) * aveRadius
 
     # generate n angle steps
     angleSteps = []
-    lower = (2*math.pi / numVerts) - irregularity
-    upper = (2*math.pi / numVerts) + irregularity
+    lower = (2 * math.pi / numVerts) - irregularity
+    upper = (2 * math.pi / numVerts) + irregularity
     sum = 0
-    for i in range(numVerts) :
+    for i in range(numVerts):
         tmp = random.uniform(lower, upper)
-        angleSteps.append( tmp )
+        angleSteps.append(tmp)
         sum = sum + tmp
 
     # normalize the steps so that point 0 and point n+1 are the same
-    k = sum / (2*math.pi)
-    for i in range(numVerts) :
+    k = sum / (2 * math.pi)
+    for i in range(numVerts):
         angleSteps[i] = angleSteps[i] / k
 
     # now generate the points
     points = []
-    angle = random.uniform(0, 2*math.pi)
-    for i in range(numVerts) :
-        r_i = clip( random.gauss(aveRadius, spikeyness), 0, 2*aveRadius )
-        x = ctrX + r_i*math.cos(angle)
-        y = ctrY + r_i*math.sin(angle)
-        points.append( (int(x),int(y)) )
+    angle = random.uniform(0, 2 * math.pi)
+    for i in range(numVerts):
+        r_i = clip(random.gauss(aveRadius, spikeyness), 0, 2 * aveRadius)
+        x = ctrX + r_i * math.cos(angle)
+        y = ctrY + r_i * math.sin(angle)
+        points.append((int(x), int(y)))
 
         angle = angle + angleSteps[i]
 
     return points
 
-def clip(x, min, max) :
+
+def clip(x, min, max):
     """Clamp *x* to the range [min, max].
 
     Args:
@@ -184,7 +233,11 @@ def clip(x, min, max) :
     Returns:
         The clamped value.
     """
-    if( min > max ) :  return x
-    elif( x < min ) :  return min
-    elif( x > max ) :  return max
-    else :             return x
+    if min > max:
+        return x
+    elif x < min:
+        return min
+    elif x > max:
+        return max
+    else:
+        return x

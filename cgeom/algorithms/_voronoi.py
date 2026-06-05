@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class VoronoiDiagram:
     """Construct a Voronoi diagram for a set of 2D sites using incremental insertion.
 
@@ -21,6 +22,7 @@ class VoronoiDiagram:
                 a y-coordinate, non-numeric, or wrong shape.
         """
         from cgeom.elements.models import VoronoiDiagramInput
+
         validated = VoronoiDiagramInput(points=data)
         self.data = np.array(validated.points)
         self.cells = []
@@ -36,7 +38,7 @@ class VoronoiDiagram:
         """
         dist = float("inf")
         for i, cell in enumerate(self.cells):
-            aux = np.sqrt((point[0] - cell[0][0])**2 + (point[1] - cell[0][1])**2)
+            aux = np.sqrt((point[0] - cell[0][0]) ** 2 + (point[1] - cell[0][1]) ** 2)
             if aux < dist:
                 dist = aux
                 pos = i
@@ -89,9 +91,25 @@ class VoronoiDiagram:
             A = edge[0]
             B = edge[1]
             C = edge_added[0]
-            D_0 = round(A[0] * B[1] + A[1] * C[0] + B[0] * C[1] - C[0] * B[1] - A[0] * C[1] - A[1] * B[0], 4)
+            D_0 = round(
+                A[0] * B[1]
+                + A[1] * C[0]
+                + B[0] * C[1]
+                - C[0] * B[1]
+                - A[0] * C[1]
+                - A[1] * B[0],
+                4,
+            )
             C = edge_added[1]
-            D_1 = round(A[0] * B[1] + A[1] * C[0] + B[0] * C[1] - C[0] * B[1] - A[0] * C[1] - A[1] * B[0], 4)
+            D_1 = round(
+                A[0] * B[1]
+                + A[1] * C[0]
+                + B[0] * C[1]
+                - C[0] * B[1]
+                - A[0] * C[1]
+                - A[1] * B[0],
+                4,
+            )
 
             # Determine precision based on the magnitude of D
             if max(abs(D_0), abs(D_1)) >= 2000000:
@@ -109,8 +127,13 @@ class VoronoiDiagram:
                 else:
                     p = edge_added[1]
 
-                dist_1 = np.sqrt((point_added[0] - A[0]) ** 2 + (point_added[1] - A[1]) ** 2)
-                dist_2 = np.sqrt((self.cells[visited_cell][0][0] - A[0]) ** 2 + (self.cells[visited_cell][0][1] - A[1]) ** 2)
+                dist_1 = np.sqrt(
+                    (point_added[0] - A[0]) ** 2 + (point_added[1] - A[1]) ** 2
+                )
+                dist_2 = np.sqrt(
+                    (self.cells[visited_cell][0][0] - A[0]) ** 2
+                    + (self.cells[visited_cell][0][1] - A[1]) ** 2
+                )
 
                 if dist_1 < dist_2:
                     self.cells[visited_cell][1][i][0] = [p[0], p[1], 1][:]
@@ -118,8 +141,13 @@ class VoronoiDiagram:
                     self.cells[visited_cell][1][i][1] = [p[0], p[1], 1][:]
 
             if abs(D_0) > precision and abs(D_1) > precision:
-                dist_1 = np.sqrt((point_added[0] - A[0]) ** 2 + (point_added[1] - A[1]) ** 2)
-                dist_2 = np.sqrt((self.cells[visited_cell][0][0] - A[0]) ** 2 + (self.cells[visited_cell][0][1] - A[1]) ** 2)
+                dist_1 = np.sqrt(
+                    (point_added[0] - A[0]) ** 2 + (point_added[1] - A[1]) ** 2
+                )
+                dist_2 = np.sqrt(
+                    (self.cells[visited_cell][0][0] - A[0]) ** 2
+                    + (self.cells[visited_cell][0][1] - A[1]) ** 2
+                )
 
                 if dist_1 < dist_2:
                     drop.append(edge)
@@ -171,11 +199,17 @@ class VoronoiDiagram:
             if abs(D) > 0.1:
                 D_t = (M[1] - A[1]) * V_3[0] - (M[0] - A[0]) * V_3[1]
                 t = D_t / D
-                INTERSECT = [round(M[0] + t * V_2[0], 4), round(M[1] + t * V_2[1], 4), 1]
+                INTERSECT = [
+                    round(M[0] + t * V_2[0], 4),
+                    round(M[1] + t * V_2[1], 4),
+                    1,
+                ]
                 IS_VALID = False
 
                 if A[2] == 1 and B[2] == 1:
-                    if INTERSECT[0] < max(A[0], B[0]) and INTERSECT[0] > min(A[0], B[0]):
+                    if INTERSECT[0] < max(A[0], B[0]) and INTERSECT[0] > min(
+                        A[0], B[0]
+                    ):
                         IS_VALID = True
 
                 if A[2] == 0 and B[2] == 1:
@@ -200,21 +234,46 @@ class VoronoiDiagram:
 
         if len(output) == 1:
             if self.search_for_cell(M) == cell:
-                inf_point = [round(M[0] - 10 * T * V_2[0], 4), round(M[1] - 10 * T * V_2[1], 4), 0]
+                inf_point = [
+                    round(M[0] - 10 * T * V_2[0], 4),
+                    round(M[1] - 10 * T * V_2[1], 4),
+                    0,
+                ]
                 i = 2
-                while np.sqrt((self.cells[cell][0][0] - inf_point[0]) ** 2 + (self.cells[cell][0][1] - inf_point[0]) ** 2) < 1000:
-                    inf_point = [round(M[0] - i * 10 * T * V_2[0], 4), round(M[1] - i * 10 * T * V_2[1], 4), 0]
+                while (
+                    np.sqrt(
+                        (self.cells[cell][0][0] - inf_point[0]) ** 2
+                        + (self.cells[cell][0][1] - inf_point[0]) ** 2
+                    )
+                    < 1000
+                ):
+                    inf_point = [
+                        round(M[0] - i * 10 * T * V_2[0], 4),
+                        round(M[1] - i * 10 * T * V_2[1], 4),
+                        0,
+                    ]
                     i += 1
 
             else:
-                inf_point = [round(M[0] + 10 * T * V_2[0], 4), round(M[1] + 10 * T * V_2[1], 4), 0]
+                inf_point = [
+                    round(M[0] + 10 * T * V_2[0], 4),
+                    round(M[1] + 10 * T * V_2[1], 4),
+                    0,
+                ]
                 i = 2
                 while (
-                    np.sqrt((self.cells[cell][0][0] - inf_point[0]) ** 2 + (self.cells[cell][0][1] - inf_point[0]) ** 2)
+                    np.sqrt(
+                        (self.cells[cell][0][0] - inf_point[0]) ** 2
+                        + (self.cells[cell][0][1] - inf_point[0]) ** 2
+                    )
                     < 1000
                     or self.search_for_cell(inf_point) != cell
                 ):
-                    inf_point = [round(M[0] + i * 10 * T * V_2[0], 4), round(M[1] + i * 10 * T * V_2[1], 4), 0]
+                    inf_point = [
+                        round(M[0] + i * 10 * T * V_2[0], 4),
+                        round(M[1] + i * 10 * T * V_2[1], 4),
+                        0,
+                    ]
                     i += 1
 
             output.append(inf_point)
@@ -262,15 +321,26 @@ class VoronoiDiagram:
         Returns:
             list: The list of Voronoi cells (also stored in ``self.cells``).
         """
-        mid = [(self.data[1][0] + self.data[0][0]) / 2, (self.data[1][1] + self.data[0][1]) / 2]
+        mid = [
+            (self.data[1][0] + self.data[0][0]) / 2,
+            (self.data[1][1] + self.data[0][1]) / 2,
+        ]
         V = [self.data[0][0] - mid[0], self.data[0][1] - mid[1]]
         self.cells.append(
             [
                 self.data[0],
                 [
                     [
-                        [round(mid[0] + 1000, 4), round(mid[1] - (V[0] / V[1]) * 1000, 4), 0],
-                        [round(mid[0] - 1000, 4), round(mid[1] + (V[0] / V[1]) * 1000, 4), 0],
+                        [
+                            round(mid[0] + 1000, 4),
+                            round(mid[1] - (V[0] / V[1]) * 1000, 4),
+                            0,
+                        ],
+                        [
+                            round(mid[0] - 1000, 4),
+                            round(mid[1] + (V[0] / V[1]) * 1000, 4),
+                            0,
+                        ],
                     ]
                 ],
             ]
@@ -280,8 +350,16 @@ class VoronoiDiagram:
                 self.data[1],
                 [
                     [
-                        [round(mid[0] + 1000, 4), round(mid[1] - (V[0] / V[1]) * 1000, 4), 0],
-                        [round(mid[0] - 1000, 4), round(mid[1] + (V[0] / V[1]) * 1000, 4), 0],
+                        [
+                            round(mid[0] + 1000, 4),
+                            round(mid[1] - (V[0] / V[1]) * 1000, 4),
+                            0,
+                        ],
+                        [
+                            round(mid[0] - 1000, 4),
+                            round(mid[1] + (V[0] / V[1]) * 1000, 4),
+                            0,
+                        ],
                     ]
                 ],
             ]
@@ -296,6 +374,7 @@ class VoronoiDiagram:
     def plot_voronoi(self, cells):
         """Deprecated: use cgeom.visualization.plot_voronoi() instead."""
         import warnings
+
         warnings.warn(
             "VoronoiDiagram.plot_voronoi() is deprecated. "
             "Use cgeom.visualization.plot_voronoi(voronoi_obj, cells) instead.",
@@ -303,4 +382,5 @@ class VoronoiDiagram:
             stacklevel=2,
         )
         from cgeom.visualization import plot_voronoi
+
         plot_voronoi(self, cells)

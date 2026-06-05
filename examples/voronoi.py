@@ -1,4 +1,5 @@
 import numpy as np
+
 from cgeom.algorithms import VoronoiDiagram
 from cgeom.visualization import plot_voronoi
 

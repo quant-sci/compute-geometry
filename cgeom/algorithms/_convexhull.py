@@ -1,5 +1,7 @@
-import numpy as np
 import math
+
+import numpy as np
+
 
 class ConvexHull:
     """Class to find the convex hull of a set of points using the Gift Wrapping algorithm""
@@ -11,6 +13,7 @@ class ConvexHull:
     Attributes:
         points (np.array): Array of points
     """
+
     def __init__(self, points):
         """Initialize the convex hull with a set of 2D points.
 
@@ -23,6 +26,7 @@ class ConvexHull:
                 non-numeric, or wrong shape.
         """
         from cgeom.elements.models import ConvexHullInput
+
         validated = ConvexHullInput(points=points)
         self.points = np.array(validated.points)
 
@@ -62,7 +66,14 @@ class ConvexHull:
                     u = [u[0] / mag_u, u[1] / mag_u]
                     v = [v[0] / mag_v, v[1] / mag_v]
                     angle = math.acos(u[0] * v[0] + u[1] * v[1])
-                    orient = b[0] * c[1] + b[1] * a[0] + c[0] * a[1] - a[0] * c[1] - a[1] * b[0] - c[0] * b[1]
+                    orient = (
+                        b[0] * c[1]
+                        + b[1] * a[0]
+                        + c[0] * a[1]
+                        - a[0] * c[1]
+                        - a[1] * b[0]
+                        - c[0] * b[1]
+                    )
                     if orient < 0:
                         angle = 2 * math.pi - angle
                     if angle < low_angle:
@@ -86,9 +97,10 @@ class ConvexHull:
             b = self.low_angle(a, ch[-2])
         return ch
 
-    def plot(self, title='Convex Hull for a set of points'):
+    def plot(self, title="Convex Hull for a set of points"):
         """Deprecated: use cgeom.visualization.plot_convex_hull() instead."""
         import warnings
+
         warnings.warn(
             "ConvexHull.plot() is deprecated. "
             "Use cgeom.visualization.plot_convex_hull(hull_obj, title) instead.",
@@ -96,6 +108,7 @@ class ConvexHull:
             stacklevel=2,
         )
         from cgeom.visualization import plot_convex_hull
+
         plot_convex_hull(self, title)
 
     def get_indexes(self):
@@ -110,4 +123,4 @@ class ConvexHull:
             while element[0] != self.points[j][0] or element[1] != self.points[j][1]:
                 j += 1
             indexes.append(j)
-        return(indexes)
+        return indexes

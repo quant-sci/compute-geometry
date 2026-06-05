@@ -1,6 +1,6 @@
 import random
-import numpy as np
 from math import sqrt
+
 
 class MinimumCircle:
     """Find the minimum enclosing circle for a set of 2D points.
@@ -20,6 +20,7 @@ class MinimumCircle:
         :return: circle
         """
         from cgeom.elements.models import MinimumCircleInput
+
         validated = MinimumCircleInput(points=num_points)
         num_points = [p[:] for p in validated.points]
         X_max = max([abs(x) for x, y in num_points])
@@ -35,7 +36,10 @@ class MinimumCircle:
         d_max = 0
         for i in range(len(points)):
             for j in range(i + 1, len(points)):
-                d = sqrt((points[i][0] - points[j][0]) ** 2 + (points[i][1] - points[j][1]) ** 2)
+                d = sqrt(
+                    (points[i][0] - points[j][0]) ** 2
+                    + (points[i][1] - points[j][1]) ** 2
+                )
                 if d > d_max:
                     d_max = d
                     Pi = points[i]
@@ -45,9 +49,14 @@ class MinimumCircle:
         circle[0] = [(Pi[0] + Pj[0]) / 2, (Pi[1] + Pj[1]) / 2]
         circle[1] = d_max / 2
         for point in num_points:
-            d_mod = sqrt((point[0] - circle[0][0]) ** 2 + (point[1] - circle[0][1]) ** 2)
+            d_mod = sqrt(
+                (point[0] - circle[0][0]) ** 2 + (point[1] - circle[0][1]) ** 2
+            )
             if d_mod > circle[1]:
-                d_norm = [(point[0] - circle[0][0]) / d_mod, (point[1] - circle[0][1]) / d_mod]
+                d_norm = [
+                    (point[0] - circle[0][0]) / d_mod,
+                    (point[1] - circle[0][1]) / d_mod,
+                ]
                 circle[0][0] = circle[0][0] + ((d_mod - circle[1]) / 2) * d_norm[0]
                 circle[0][1] = circle[0][1] + ((d_mod - circle[1]) / 2) * d_norm[1]
                 circle[1] = (d_mod + circle[1]) / 2
@@ -82,15 +91,41 @@ class MinimumCircle:
         circle[0][1] = (q1[1] + q2[1]) / 2
         circle[1] = (sqrt((q2[0] - q1[0]) ** 2 + (q2[1] - q1[1]) ** 2)) / 2
         for i in range(0, len(num_points)):
-            d = sqrt((circle[0][0] - num_points[i][0]) ** 2 + (circle[0][1] - num_points[i][1]) ** 2)
+            d = sqrt(
+                (circle[0][0] - num_points[i][0]) ** 2
+                + (circle[0][1] - num_points[i][1]) ** 2
+            )
             if d > circle[1]:
-                D = 2 * ((q2[0] - q1[0]) * (num_points[i][1] - q1[1]) - (num_points[i][0] - q1[0]) * (q2[1] - q1[1]))
-                circleX = ((num_points[i][1] - q1[1]) * (q2[0] ** 2 + q2[1] ** 2 - q1[0] ** 2 - q1[1] ** 2) - (q2[1] - q1[1]) * (
-                            num_points[i][0] ** 2 + num_points[i][1] ** 2 - q1[0] ** 2 - q1[1] ** 2)) / D
-                circleY = ((q2[0] - q1[0]) * (num_points[i][0] ** 2 + num_points[i][1] ** 2 - q1[0] ** 2 - q1[1] ** 2) - (num_points[i][0] - q1[0]) * (
-                            q2[0] ** 2 + q2[1] ** 2 - q1[0] ** 2 - q1[1] ** 2)) / D
+                D = 2 * (
+                    (q2[0] - q1[0]) * (num_points[i][1] - q1[1])
+                    - (num_points[i][0] - q1[0]) * (q2[1] - q1[1])
+                )
+                circleX = (
+                    (num_points[i][1] - q1[1])
+                    * (q2[0] ** 2 + q2[1] ** 2 - q1[0] ** 2 - q1[1] ** 2)
+                    - (q2[1] - q1[1])
+                    * (
+                        num_points[i][0] ** 2
+                        + num_points[i][1] ** 2
+                        - q1[0] ** 2
+                        - q1[1] ** 2
+                    )
+                ) / D
+                circleY = (
+                    (q2[0] - q1[0])
+                    * (
+                        num_points[i][0] ** 2
+                        + num_points[i][1] ** 2
+                        - q1[0] ** 2
+                        - q1[1] ** 2
+                    )
+                    - (num_points[i][0] - q1[0])
+                    * (q2[0] ** 2 + q2[1] ** 2 - q1[0] ** 2 - q1[1] ** 2)
+                ) / D
                 circle[0] = [circleX, circleY]
-                circle[1] = sqrt((q1[0] - circle[0][0]) ** 2 + (q1[1] - circle[0][1]) ** 2)
+                circle[1] = sqrt(
+                    (q1[0] - circle[0][0]) ** 2 + (q1[1] - circle[0][1]) ** 2
+                )
         return circle
 
     @staticmethod
@@ -104,11 +139,18 @@ class MinimumCircle:
         circle = [[0.0, 0.0], 0.0]
         circle[0][0] = (num_points[0][0] + q[0]) / 2
         circle[0][1] = (num_points[0][1] + q[1]) / 2
-        circle[1] = (sqrt((num_points[0][0] - q[0]) ** 2 + (num_points[0][1] - q[1]) ** 2)) / 2
+        circle[1] = (
+            sqrt((num_points[0][0] - q[0]) ** 2 + (num_points[0][1] - q[1]) ** 2)
+        ) / 2
         for i in range(1, len(num_points)):
-            d = sqrt((circle[0][0] - num_points[i][0]) ** 2 + (circle[0][1] - num_points[i][1]) ** 2)
+            d = sqrt(
+                (circle[0][0] - num_points[i][0]) ** 2
+                + (circle[0][1] - num_points[i][1]) ** 2
+            )
             if d > circle[1]:
-                circle = MinimumCircle.minimum_circle_points(num_points[0:i], num_points[i], q)
+                circle = MinimumCircle.minimum_circle_points(
+                    num_points[0:i], num_points[i], q
+                )
         return circle
 
     def minimum_circle(self, num_points):
@@ -118,15 +160,24 @@ class MinimumCircle:
         :return: circle
         """
         from cgeom.elements.models import MinimumCircleInput
+
         validated = MinimumCircleInput(points=num_points)
         num_points = [p[:] for p in validated.points]
         random_perm = self.randomized_permutation(num_points)
         circle = [[0.0, 0.0], 0.0]
         circle[0][0] = (random_perm[0][0] + random_perm[1][0]) / 2
         circle[0][1] = (random_perm[0][1] + random_perm[1][1]) / 2
-        circle[1] = (sqrt((random_perm[1][0] - random_perm[0][0]) ** 2 + (random_perm[1][1] - random_perm[0][1]) ** 2)) / 2
+        circle[1] = (
+            sqrt(
+                (random_perm[1][0] - random_perm[0][0]) ** 2
+                + (random_perm[1][1] - random_perm[0][1]) ** 2
+            )
+        ) / 2
         for i in range(2, len(random_perm)):
-            d = sqrt((circle[0][0] - random_perm[i][0]) ** 2 + (circle[0][1] - random_perm[i][1]) ** 2)
+            d = sqrt(
+                (circle[0][0] - random_perm[i][0]) ** 2
+                + (circle[0][1] - random_perm[i][1]) ** 2
+            )
             if d > circle[1]:
                 circle = self.min_circle_with_point(random_perm[0:i], random_perm[i])
         return circle
@@ -134,6 +185,7 @@ class MinimumCircle:
     def plot_min_circle_random(self, sizes, path=None, show=False):
         """Deprecated: use cgeom.visualization.plot_min_circle_random() instead."""
         import warnings
+
         warnings.warn(
             "MinimumCircle.plot_min_circle_random() is deprecated. "
             "Use cgeom.visualization.plot_min_circle_random(mc_obj, sizes, path, show) instead.",
@@ -141,11 +193,13 @@ class MinimumCircle:
             stacklevel=2,
         )
         from cgeom.visualization import plot_min_circle_random
+
         plot_min_circle_random(self, sizes, path, show)
 
     def plot_min_circle(self, data, path=None, show=False):
         """Deprecated: use cgeom.visualization.plot_min_circle() instead."""
         import warnings
+
         warnings.warn(
             "MinimumCircle.plot_min_circle() is deprecated. "
             "Use cgeom.visualization.plot_min_circle(mc_obj, data, path, show) instead.",
@@ -153,4 +207,5 @@ class MinimumCircle:
             stacklevel=2,
         )
         from cgeom.visualization import plot_min_circle
+
         plot_min_circle(self, data, path, show)

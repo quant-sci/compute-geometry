@@ -21,7 +21,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "flake8>=5.0.4",
+    "ruff>=0.6.0",
     "pre-commit>=2.20.0",
     "pytest>=7.1.3",
     "commitizen>=2.40.0",
@@ -41,3 +41,18 @@ changelog_incremental = true
 version_files = [
     "pyproject.toml:version"
 ]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+extend-exclude = [".venv"]
+
+[tool.ruff.lint]
+# pyflakes (F), pycodestyle errors/warnings (E/W), import sorting (I)
+select = ["E", "F", "W", "I"]
+# line length is enforced by the formatter, not the linter
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# __init__.py re-exports symbols for the public API
+"__init__.py" = ["F401"]

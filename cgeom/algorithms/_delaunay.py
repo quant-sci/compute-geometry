@@ -20,6 +20,7 @@ class DelaunayTriangulation:
                 non-numeric, or wrong shape.
         """
         from cgeom.elements.models import DelaunayTriangulationInput
+
         validated = DelaunayTriangulationInput(points=points)
         self.points = np.array(validated.points)
         self._triangles = None
@@ -50,11 +51,13 @@ class DelaunayTriangulation:
         margin = 20.0
 
         # Super-triangle vertices stored at indices n, n+1, n+2
-        super_pts = np.array([
-            [mid_x - margin * delta, mid_y - delta],
-            [mid_x + margin * delta, mid_y - delta],
-            [mid_x, mid_y + margin * delta],
-        ])
+        super_pts = np.array(
+            [
+                [mid_x - margin * delta, mid_y - delta],
+                [mid_x + margin * delta, mid_y - delta],
+                [mid_x, mid_y + margin * delta],
+            ]
+        )
         all_pts = np.vstack([pts, super_pts])
 
         # Each triangle is a frozenset of 3 indices
@@ -65,7 +68,9 @@ class DelaunayTriangulation:
             bad = set()
             for tri in triangles:
                 a, b, c = tri
-                if self._in_circumcircle(all_pts[i], all_pts[a], all_pts[b], all_pts[c]):
+                if self._in_circumcircle(
+                    all_pts[i], all_pts[a], all_pts[b], all_pts[c]
+                ):
                     bad.add(tri)
 
             # Find boundary polygon: edges belonging to exactly one bad triangle
@@ -118,8 +123,9 @@ class DelaunayTriangulation:
                 key = (min(edge), max(edge))
                 if key not in seen:
                     seen.add(key)
-                    edges.append([self.points[key[0]].tolist(),
-                                  self.points[key[1]].tolist()])
+                    edges.append(
+                        [self.points[key[0]].tolist(), self.points[key[1]].tolist()]
+                    )
         return edges
 
     def get_circumcircles(self):
@@ -140,6 +146,7 @@ class DelaunayTriangulation:
     def plot(self, title="Delaunay Triangulation"):
         """Deprecated: use cgeom.visualization.plot_delaunay() instead."""
         import warnings
+
         warnings.warn(
             "DelaunayTriangulation.plot() is deprecated. "
             "Use cgeom.visualization.plot_delaunay(dt_obj, title) instead.",
@@ -147,6 +154,7 @@ class DelaunayTriangulation:
             stacklevel=2,
         )
         from cgeom.visualization import plot_delaunay
+
         plot_delaunay(self, title)
 
     @staticmethod
@@ -161,12 +169,16 @@ class DelaunayTriangulation:
         cx, cy = float(c[0]), float(c[1])
 
         D = 2.0 * (ax * (by - cy) + bx * (cy - ay) + cx * (ay - by))
-        ux = ((ax * ax + ay * ay) * (by - cy)
-              + (bx * bx + by * by) * (cy - ay)
-              + (cx * cx + cy * cy) * (ay - by)) / D
-        uy = ((ax * ax + ay * ay) * (cx - bx)
-              + (bx * bx + by * by) * (ax - cx)
-              + (cx * cx + cy * cy) * (bx - ax)) / D
+        ux = (
+            (ax * ax + ay * ay) * (by - cy)
+            + (bx * bx + by * by) * (cy - ay)
+            + (cx * cx + cy * cy) * (ay - by)
+        ) / D
+        uy = (
+            (ax * ax + ay * ay) * (cx - bx)
+            + (bx * bx + by * by) * (ax - cx)
+            + (cx * cx + cy * cy) * (bx - ax)
+        ) / D
         r = np.sqrt((ax - ux) ** 2 + (ay - uy) ** 2)
         return ux, uy, r
 
@@ -181,14 +193,17 @@ class DelaunayTriangulation:
         bx, by = float(b[0]) - float(p[0]), float(b[1]) - float(p[1])
         cx, cy = float(c[0]) - float(p[0]), float(c[1]) - float(p[1])
 
-        det = (ax * ax + ay * ay) * (bx * cy - cx * by) \
-            - (bx * bx + by * by) * (ax * cy - cx * ay) \
+        det = (
+            (ax * ax + ay * ay) * (bx * cy - cx * by)
+            - (bx * bx + by * by) * (ax * cy - cx * ay)
             + (cx * cx + cy * cy) * (ax * by - bx * ay)
+        )
 
         # The sign of det depends on triangle orientation (CCW vs CW).
         # Compute orientation and flip if clockwise.
-        orient = (float(b[0]) - float(a[0])) * (float(c[1]) - float(a[1])) \
-               - (float(b[1]) - float(a[1])) * (float(c[0]) - float(a[0]))
+        orient = (float(b[0]) - float(a[0])) * (float(c[1]) - float(a[1])) - (
+            float(b[1]) - float(a[1])
+        ) * (float(c[0]) - float(a[0]))
         if orient < 0:
             det = -det
 

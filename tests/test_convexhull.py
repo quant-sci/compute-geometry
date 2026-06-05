@@ -1,8 +1,10 @@
 import matplotlib
+
 matplotlib.use("Agg")
 
 import numpy as np
 import pytest
+
 from cgeom.algorithms import ConvexHull
 
 
@@ -49,8 +51,13 @@ class TestConvexHullWithInteriorPoints:
 
     def setup_method(self):
         self.points = [
-            [0, 0], [10, 0], [10, 10], [0, 10],  # corners
-            [5, 5], [3, 3], [7, 2],                # interior
+            [0, 0],
+            [10, 0],
+            [10, 10],
+            [0, 10],  # corners
+            [5, 5],
+            [3, 3],
+            [7, 2],  # interior
         ]
         self.ch = ConvexHull(self.points)
 

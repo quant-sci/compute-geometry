@@ -170,8 +170,9 @@ class Segment(BaseModel):
     @property
     def midpoint(self) -> Point:
         """Midpoint of the segment."""
-        return Point(x=(self.start.x + self.end.x) / 2,
-                     y=(self.start.y + self.end.y) / 2)
+        return Point(
+            x=(self.start.x + self.end.x) / 2, y=(self.start.y + self.end.y) / 2
+        )
 
     def to_list(self) -> list[list[float]]:
         """Return as [[x1, y1], [x2, y2]]."""
@@ -217,7 +218,7 @@ class Circle(BaseModel):
     @property
     def area(self) -> float:
         """Area of the circle."""
-        return math.pi * self.radius ** 2
+        return math.pi * self.radius**2
 
     @property
     def circumference(self) -> float:
@@ -287,8 +288,7 @@ class Polygon(BaseModel):
         """Perimeter of the polygon."""
         n = len(self.vertices)
         return sum(
-            self.vertices[i].distance_to(self.vertices[(i + 1) % n])
-            for i in range(n)
+            self.vertices[i].distance_to(self.vertices[(i + 1) % n]) for i in range(n)
         )
 
     def to_numpy(self) -> np.ndarray:
