@@ -1,8 +1,10 @@
 import matplotlib
+
 matplotlib.use("Agg")
 
 import numpy as np
 import pytest
+
 from cgeom.algorithms import PolygonTriangulation
 
 
@@ -76,9 +78,7 @@ class TestTriangulationLShaped:
 
     def setup_method(self):
         # L-shape in CCW order
-        poly = np.array([
-            [0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]
-        ], dtype=float)
+        poly = np.array([[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]], dtype=float)
         self.tri = PolygonTriangulation(poly)
 
     def test_diagonal_count(self):

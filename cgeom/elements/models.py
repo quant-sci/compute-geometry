@@ -70,9 +70,7 @@ class ConvexHullInput(BaseModel):
             raise ValueError("ConvexHull requires at least 3 points")
 
         if _all_collinear(points):
-            raise ValueError(
-                "All points are collinear; convex hull is undefined"
-            )
+            raise ValueError("All points are collinear; convex hull is undefined")
 
         if _has_duplicates(points):
             warnings.warn(
@@ -129,19 +127,13 @@ class PolygonTriangulationInput(BaseModel):
         points = _to_point_list(raw)
 
         if len(points) < 3:
-            raise ValueError(
-                "Polygon triangulation requires at least 3 vertices"
-            )
+            raise ValueError("Polygon triangulation requires at least 3 vertices")
 
         if _all_collinear(points):
-            raise ValueError(
-                "All vertices are collinear; polygon is degenerate"
-            )
+            raise ValueError("All vertices are collinear; polygon is degenerate")
 
         if _has_duplicates(points):
-            warnings.warn(
-                "Duplicate vertices detected in polygon", UserWarning
-            )
+            warnings.warn("Duplicate vertices detected in polygon", UserWarning)
 
         return {"poly": points, "poly_name": poly_name}
 
@@ -184,6 +176,7 @@ def _to_segment_list(raw) -> List[List[List[float]]]:
 
     # Handle list of Segment objects
     from cgeom.elements.elements import Segment
+
     if isinstance(raw, (list, tuple)) and len(raw) > 0 and isinstance(raw[0], Segment):
         raw = [s.to_list() for s in raw]
 
@@ -196,9 +189,7 @@ def _to_segment_list(raw) -> List[List[List[float]]]:
             raise ValueError("Segments must contain only numeric values")
 
     if arr.ndim != 3 or arr.shape[1] != 2 or arr.shape[2] != 2:
-        raise ValueError(
-            f"Segments must have shape (n, 2, 2), got shape {arr.shape}"
-        )
+        raise ValueError(f"Segments must have shape (n, 2, 2), got shape {arr.shape}")
 
     return arr.tolist()
 
@@ -219,26 +210,20 @@ class SegmentIntersectionInput(BaseModel):
         segments = _to_segment_list(raw)
 
         if len(segments) < 2:
-            raise ValueError(
-                "SegmentIntersection requires at least 2 segments"
-            )
+            raise ValueError("SegmentIntersection requires at least 2 segments")
 
         for i, seg in enumerate(segments):
             x1, y1 = seg[0]
             x2, y2 = seg[1]
             if abs(x1 - x2) < 1e-12 and abs(y1 - y2) < 1e-12:
-                raise ValueError(
-                    f"Segment {i} has zero length (identical endpoints)"
-                )
+                raise ValueError(f"Segment {i} has zero length (identical endpoints)")
 
         seen = set()
         for seg in segments:
             key = (tuple(seg[0]), tuple(seg[1]))
             rkey = (tuple(seg[1]), tuple(seg[0]))
             if key in seen or rkey in seen:
-                warnings.warn(
-                    "Duplicate segments detected", UserWarning
-                )
+                warnings.warn("Duplicate segments detected", UserWarning)
                 break
             seen.add(key)
 
@@ -261,14 +246,10 @@ class DelaunayTriangulationInput(BaseModel):
         points = _to_point_list(raw)
 
         if len(points) < 3:
-            raise ValueError(
-                "Delaunay triangulation requires at least 3 points"
-            )
+            raise ValueError("Delaunay triangulation requires at least 3 points")
 
         if _all_collinear(points):
-            raise ValueError(
-                "All points are collinear; triangulation is undefined"
-            )
+            raise ValueError("All points are collinear; triangulation is undefined")
 
         if _has_duplicates(points):
             warnings.warn(

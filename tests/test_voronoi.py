@@ -1,8 +1,9 @@
 import matplotlib
+
 matplotlib.use("Agg")
 
-import numpy as np
 import pytest
+
 from cgeom.algorithms import VoronoiDiagram
 
 
@@ -52,8 +53,12 @@ class TestVoronoiSixPoints:
 
     def setup_method(self):
         self.data = [
-            [326, 237], [373, 209], [378, 265],
-            [443, 241], [396, 231], [416, 270],
+            [326, 237],
+            [373, 209],
+            [378, 265],
+            [443, 241],
+            [396, 231],
+            [416, 270],
         ]
         self.vd = VoronoiDiagram(self.data)
         self.cells = self.vd.build_voronoi_diagram()
@@ -96,10 +101,26 @@ class TestVoronoiFullExample:
 
     def setup_method(self):
         self.data = [
-            [326, 237], [373, 209], [378, 265], [443, 241], [396, 231],
-            [416, 270], [361, 335], [324, 297], [400, 306], [454, 315],
-            [489, 285], [488, 234], [443, 185], [421, 137], [380, 169],
-            [315, 160], [297, 204], [267, 248], [265, 344], [342, 263],
+            [326, 237],
+            [373, 209],
+            [378, 265],
+            [443, 241],
+            [396, 231],
+            [416, 270],
+            [361, 335],
+            [324, 297],
+            [400, 306],
+            [454, 315],
+            [489, 285],
+            [488, 234],
+            [443, 185],
+            [421, 137],
+            [380, 169],
+            [315, 160],
+            [297, 204],
+            [267, 248],
+            [265, 344],
+            [342, 263],
         ]
         self.vd = VoronoiDiagram(self.data)
         self.cells = self.vd.build_voronoi_diagram()

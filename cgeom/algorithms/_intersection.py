@@ -5,10 +5,10 @@ from enum import IntEnum
 
 import numpy as np
 
-
 # ---------------------------------------------------------------------------
 # Event types — ordering matters for the heap (left < intersection < right)
 # ---------------------------------------------------------------------------
+
 
 class _EventType(IntEnum):
     LEFT = 0
@@ -97,6 +97,7 @@ def _y_at_x(seg, x):
 # Sweep-line status structure
 # ---------------------------------------------------------------------------
 
+
 class _SweepLineStatus:
     """Maintains sorted list of active segments ordered by y at current sweep x."""
 
@@ -159,6 +160,7 @@ class _SweepLineStatus:
 # Main class
 # ---------------------------------------------------------------------------
 
+
 class SegmentIntersection:
     """Find intersection points among a set of 2D line segments.
 
@@ -181,6 +183,7 @@ class SegmentIntersection:
                 segment, non-numeric, or wrong shape.
         """
         from cgeom.elements.models import SegmentIntersectionInput
+
         validated = SegmentIntersectionInput(segments=segments)
         self.segments = np.array(validated.segments)
 
@@ -222,9 +225,9 @@ class SegmentIntersection:
                 if rkey not in found_points:
                     found_points[rkey] = pt
                 found_pairs.add(pair)
-                heapq.heappush(events, (
-                    pt[0], _EventType.INTERSECTION, pt[1], seg_a, seg_b
-                ))
+                heapq.heappush(
+                    events, (pt[0], _EventType.INTERSECTION, pt[1], seg_a, seg_b)
+                )
 
         while events:
             x, etype, y, s1, s2 = heapq.heappop(events)
@@ -303,6 +306,7 @@ class SegmentIntersection:
     def plot(self, title="Segment Intersections"):
         """Deprecated: use cgeom.visualization.plot_intersections() instead."""
         import warnings
+
         warnings.warn(
             "SegmentIntersection.plot() is deprecated. "
             "Use cgeom.visualization.plot_intersections(si_obj, title) instead.",
@@ -310,6 +314,7 @@ class SegmentIntersection:
             stacklevel=2,
         )
         from cgeom.visualization import plot_intersections
+
         plot_intersections(self, title)
 
     def _normalize_segments(self):

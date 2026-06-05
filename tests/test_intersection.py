@@ -1,10 +1,12 @@
 """Tests for line segment intersection (Bentley-Ottmann and brute force)."""
 
 import matplotlib
+
 matplotlib.use("Agg")
 
 import numpy as np
 import pytest
+
 from cgeom.algorithms import SegmentIntersection
 
 

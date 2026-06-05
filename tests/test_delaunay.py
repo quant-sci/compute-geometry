@@ -1,10 +1,12 @@
 """Tests for Delaunay triangulation (Bowyer-Watson)."""
 
 import matplotlib
+
 matplotlib.use("Agg")
 
 import numpy as np
 import pytest
+
 from cgeom.algorithms import ConvexHull, DelaunayTriangulation
 
 
@@ -78,9 +80,18 @@ class TestDelaunayConvexHullRelation:
 
     def test_hull_edges_subset(self):
         pts = [
-            [0, 0], [10, 0], [10, 10], [0, 10],
-            [5, 5], [3, 3], [7, 2], [2, 8],
-            [8, 6], [6, 1], [1, 5], [9, 9],
+            [0, 0],
+            [10, 0],
+            [10, 10],
+            [0, 10],
+            [5, 5],
+            [3, 3],
+            [7, 2],
+            [2, 8],
+            [8, 6],
+            [6, 1],
+            [1, 5],
+            [9, 9],
         ]
         dt = DelaunayTriangulation(pts)
         ch = ConvexHull(pts)
@@ -152,10 +163,26 @@ class TestDelaunayLargerSet:
 
     def setup_method(self):
         self.data = [
-            [326, 237], [373, 209], [378, 265], [443, 241], [396, 231],
-            [416, 270], [361, 335], [324, 297], [400, 306], [454, 315],
-            [489, 285], [488, 234], [443, 185], [421, 137], [380, 169],
-            [315, 160], [297, 204], [267, 248], [265, 344], [342, 263],
+            [326, 237],
+            [373, 209],
+            [378, 265],
+            [443, 241],
+            [396, 231],
+            [416, 270],
+            [361, 335],
+            [324, 297],
+            [400, 306],
+            [454, 315],
+            [489, 285],
+            [488, 234],
+            [443, 185],
+            [421, 137],
+            [380, 169],
+            [315, 160],
+            [297, 204],
+            [267, 248],
+            [265, 344],
+            [342, 263],
         ]
         self.dt = DelaunayTriangulation(self.data)
 
@@ -178,6 +205,7 @@ class TestDelaunayLargerSet:
 # ---------------------------------------------------------------------------
 # Helper
 # ---------------------------------------------------------------------------
+
 
 def _assert_delaunay_property(dt):
     """Assert no input point lies strictly inside any triangle's circumcircle."""

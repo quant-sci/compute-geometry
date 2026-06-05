@@ -1,9 +1,12 @@
 import matplotlib
+
 matplotlib.use("Agg")
 
 import math
 import random
+
 import pytest
+
 from cgeom.algorithms import MinimumCircle
 
 
@@ -62,8 +65,12 @@ class TestMinimumCircleWithInterior:
     def setup_method(self):
         self.mc = MinimumCircle()
         self.points = [
-            [0, 0], [10, 0], [10, 10], [0, 10],  # square
-            [5, 5], [3, 7],                         # interior
+            [0, 0],
+            [10, 0],
+            [10, 10],
+            [0, 10],  # square
+            [5, 5],
+            [3, 7],  # interior
         ]
 
     def test_all_enclosed(self):
@@ -85,7 +92,9 @@ class TestMinimumCircleHeuristic:
     def setup_method(self):
         self.mc = MinimumCircle()
         random.seed(42)
-        self.points = [[random.uniform(-10, 10), random.uniform(-10, 10)] for _ in range(20)]
+        self.points = [
+            [random.uniform(-10, 10), random.uniform(-10, 10)] for _ in range(20)
+        ]
 
     def test_heuristic_encloses_all(self):
         circle = MinimumCircle.minimum_circle_heuristic(self.points)

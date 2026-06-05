@@ -1,21 +1,14 @@
 """Tests for pydantic input validation on all algorithm models."""
 
 import matplotlib
+
 matplotlib.use("Agg")
+
 
 import numpy as np
 import pytest
-import warnings
 from pydantic import ValidationError
 
-from cgeom.elements.models import (
-    ConvexHullInput,
-    DelaunayTriangulationInput,
-    MinimumCircleInput,
-    PolygonTriangulationInput,
-    SegmentIntersectionInput,
-    VoronoiDiagramInput,
-)
 from cgeom.algorithms import (
     ConvexHull,
     DelaunayTriangulation,
@@ -24,14 +17,21 @@ from cgeom.algorithms import (
     SegmentIntersection,
     VoronoiDiagram,
 )
-
+from cgeom.elements.models import (
+    ConvexHullInput,
+    DelaunayTriangulationInput,
+    MinimumCircleInput,
+    PolygonTriangulationInput,
+    SegmentIntersectionInput,
+    VoronoiDiagramInput,
+)
 
 # ---------------------------------------------------------------------------
 # ConvexHullInput
 # ---------------------------------------------------------------------------
 
-class TestConvexHullValidation:
 
+class TestConvexHullValidation:
     def test_too_few_points(self):
         with pytest.raises(ValidationError, match="at least 3 points"):
             ConvexHullInput(points=[[0, 0], [1, 1]])
@@ -74,8 +74,8 @@ class TestConvexHullValidation:
 # MinimumCircleInput
 # ---------------------------------------------------------------------------
 
-class TestMinimumCircleValidation:
 
+class TestMinimumCircleValidation:
     def test_too_few_points(self):
         with pytest.raises(ValidationError, match="at least 2 points"):
             MinimumCircleInput(points=[[0, 0]])
@@ -102,8 +102,8 @@ class TestMinimumCircleValidation:
 # PolygonTriangulationInput
 # ---------------------------------------------------------------------------
 
-class TestPolygonTriangulationValidation:
 
+class TestPolygonTriangulationValidation:
     def test_too_few_vertices(self):
         with pytest.raises(ValidationError, match="at least 3 vertices"):
             PolygonTriangulationInput(poly=[[0, 0], [1, 1]])
@@ -118,9 +118,7 @@ class TestPolygonTriangulationValidation:
 
     def test_duplicate_warning(self):
         with pytest.warns(UserWarning, match="Duplicate"):
-            PolygonTriangulationInput(
-                poly=[[0, 0], [4, 0], [2, 3], [0, 0]]
-            )
+            PolygonTriangulationInput(poly=[[0, 0], [4, 0], [2, 3], [0, 0]])
 
     def test_valid_ndarray(self):
         arr = np.array([[0, 0], [4, 0], [2, 3]], dtype=float)
@@ -136,8 +134,8 @@ class TestPolygonTriangulationValidation:
 # VoronoiDiagramInput
 # ---------------------------------------------------------------------------
 
-class TestVoronoiDiagramValidation:
 
+class TestVoronoiDiagramValidation:
     def test_too_few_points(self):
         with pytest.raises(ValidationError, match="at least 2 points"):
             VoronoiDiagramInput(points=[[0, 0]])
@@ -163,8 +161,8 @@ class TestVoronoiDiagramValidation:
 # DelaunayTriangulationInput
 # ---------------------------------------------------------------------------
 
-class TestDelaunayTriangulationValidation:
 
+class TestDelaunayTriangulationValidation:
     def test_too_few_points(self):
         with pytest.raises(ValidationError, match="at least 3 points"):
             DelaunayTriangulationInput(points=[[0, 0], [1, 1]])
@@ -206,17 +204,15 @@ class TestDelaunayTriangulationValidation:
 # SegmentIntersectionInput
 # ---------------------------------------------------------------------------
 
-class TestSegmentIntersectionValidation:
 
+class TestSegmentIntersectionValidation:
     def test_too_few_segments(self):
         with pytest.raises(ValidationError, match="at least 2 segments"):
             SegmentIntersectionInput(segments=[[[0, 0], [1, 1]]])
 
     def test_zero_length_segment(self):
         with pytest.raises(ValidationError, match="zero length"):
-            SegmentIntersectionInput(
-                segments=[[[0, 0], [0, 0]], [[1, 0], [2, 0]]]
-            )
+            SegmentIntersectionInput(segments=[[[0, 0], [0, 0]], [[1, 0], [2, 0]]])
 
     def test_non_numeric(self):
         with pytest.raises(ValidationError, match="numeric"):
@@ -240,18 +236,14 @@ class TestSegmentIntersectionValidation:
 
     def test_valid_input_formats(self):
         # list
-        result = SegmentIntersectionInput(
-            segments=[[[0, 0], [1, 1]], [[0, 1], [1, 0]]]
-        )
+        result = SegmentIntersectionInput(segments=[[[0, 0], [1, 1]], [[0, 1], [1, 0]]])
         assert len(result.segments) == 2
         # ndarray
         arr = np.array([[[0, 0], [1, 1]], [[0, 1], [1, 0]]], dtype=float)
         result = SegmentIntersectionInput(segments=arr)
         assert len(result.segments) == 2
         # tuples
-        result = SegmentIntersectionInput(
-            segments=[((0, 0), (1, 1)), ((0, 1), (1, 0))]
-        )
+        result = SegmentIntersectionInput(segments=[((0, 0), (1, 1)), ((0, 1), (1, 0))])
         assert len(result.segments) == 2
 
     def test_integration_rejects_bad_input(self):
