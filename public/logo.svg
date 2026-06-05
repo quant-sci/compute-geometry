@@ -1,0 +1,27 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="compute-geometry logo">
+  <defs>
+    <clipPath id="panel"><rect x="3" y="3" width="122" height="122" rx="26"/></clipPath>
+  </defs>
+
+  <!-- rounded panel keeps contrast consistent on light & dark backgrounds -->
+  <rect x="1" y="1" width="126" height="126" rx="28" fill="#fbfcfe" stroke="#e6e9f1" stroke-width="2"/>
+
+  <!-- Voronoi cell boundaries, clipped to the panel -->
+  <g clip-path="url(#panel)">
+    <g stroke="#002855" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="69.45" y1="59.35" x2="-935.00" y2="-5214.00"/>
+      <line x1="62.15" y1="67.69" x2="-899.84" y2="-92.64"/>
+      <line x1="69.45" y1="59.35" x2="62.15" y2="67.69"/>
+      <line x1="69.45" y1="59.35" x2="871.12" y2="-36.85"/>
+      <line x1="62.15" y1="67.69" x2="768.73" y2="6662.46"/>
+    </g>
+  </g>
+
+  <!-- sites: Smart Blue nodes with white halo -->
+  <g fill="#0466c8" stroke="#fbfcfe" stroke-width="2.4">
+    <circle cx="44.0" cy="40.0" r="5.6"/>
+    <circle cx="86.0" cy="32.0" r="5.6"/>
+    <circle cx="36.0" cy="88.0" r="5.6"/>
+    <circle cx="92.0" cy="82.0" r="5.6"/>
+  </g>
+</svg>

@@ -1,10 +1,19 @@
-[![PyPI](https://img.shields.io/pypi/v/compute-geometry)](https://pypi.org/project/compute-geometry/)
-[![GitHub](https://img.shields.io/github/license/kleyt0n/compute-geometry)](https://github.com/kleyt0n/compute-geometry/blob/master/LICENSE)
+<p align="center">
+  <img src="public/logo.svg" alt="compute-geometry" width="116" height="116">
+</p>
 
+<h1 align="center">compute-geometry</h1>
 
-**compute-geometry** is a research-focused computational geometry library for Python. This library is designed to provide a set of tools and algorithms for solving geometric problems.
+<p align="center">
+  A research-focused computational geometry library for Python.
+</p>
 
-[ROADMAP](ROADMAP.md)
+<p align="center">
+  <a href="https://pypi.org/project/compute-geometry/"><img src="https://img.shields.io/pypi/v/compute-geometry" alt="PyPI"></a>
+  <a href="https://github.com/kleyt0n/compute-geometry/blob/master/LICENSE"><img src="https://img.shields.io/github/license/kleyt0n/compute-geometry" alt="License"></a>
+</p>
+
+**compute-geometry** is a research-focused computational geometry library for Python, providing a set of composable primitives and algorithms for solving geometric problems.
 
 ## Installation
 

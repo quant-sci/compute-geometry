@@ -21,15 +21,17 @@ mpl.rcParams.update({
 })
 
 # ---------------------------------------------------------------------------
-# Grayscale palette — hand-picked hex grays
+# Blue / navy palette — deep navies for structure, Smart Blue for focal data,
+# slate & lavender greys for labels and annotations.
 # ---------------------------------------------------------------------------
-_INK      = "#1a1a1a"   # near-black — primary data (points, main edges)
-_CHARCOAL = "#4a4a4a"   # dark gray — secondary edges, lines
-_STEEL    = "#7a7a7a"   # medium gray — tertiary, tick labels, axis labels
-_SILVER   = "#a8a8a8"   # light-medium — annotations, dashes, subtle markers
-_ASH      = "#d4d4d4"   # light gray — spines, ticks (if ever needed)
-_MIST     = "#ededed"   # very faint — fill base color
-_BG       = "#fafafa"   # off-white — figure & axes background
+_INK      = "#002855"   # Prussian Blue — primary structure, main edges
+_ACCENT   = "#0466c8"   # Smart Blue — focal data points, emphasis
+_CHARCOAL = "#023e7d"   # Regal Navy — secondary edges, lines
+_STEEL    = "#5c677d"   # Blue Slate — tick labels, axis labels
+_SILVER   = "#7d8597"   # Slate Grey — annotations, dashes, subtle markers
+_ASH      = "#979dac"   # Lavender Grey — light ticks, borders
+_MIST     = "#e6e9f1"   # faint lavender — grid lines, fill base color
+_BG       = "#fbfcfe"   # cool near-white — figure & axes background
 
 # ---------------------------------------------------------------------------
 # Visual sizing constants
@@ -53,15 +55,16 @@ def _hex_to_rgb(hex_color):
 
 
 def _style_ax(ax, title=None):
-    """Apply a minimal look to an axes object."""
+    """Apply a minimal, modern look to an axes object."""
     if title:
-        ax.set_title(title, fontsize=12, fontweight="300",
-                     color=_INK, pad=14)
+        ax.set_title(title, loc="left", fontsize=12.5, fontweight="500",
+                     color=_INK, pad=12)
     ax.set_facecolor(_BG)
-    ax.grid(False)
+    ax.set_axisbelow(True)
+    ax.grid(True, color=_MIST, linewidth=0.7, zorder=0)
     for spine in ax.spines.values():
         spine.set_visible(False)
-    ax.tick_params(colors=_STEEL, labelsize=7.5, length=0, width=0)
+    ax.tick_params(colors=_STEEL, labelsize=7.5, length=0, width=0, pad=4)
 
 
 def _new_fig(figsize=(5.5, 5.5)):
@@ -101,7 +104,7 @@ def plot_convex_hull(hull_obj, title="Convex Hull"):
     )
     ax.scatter(
         [p[0] for p in ch], [p[1] for p in ch],
-        c=_INK, s=_PT_ACCENT, zorder=4,
+        c=_ACCENT, s=_PT_ACCENT, zorder=4,
         edgecolors="white", linewidths=_PT_EDGE_W,
     )
 
@@ -152,7 +155,7 @@ def plot_min_circle_random(mc_obj, sizes, path=None, show=False):
             ax = axes[idx]
             _style_ax(ax, label)
             ax.set_aspect("equal")
-            ax.scatter(x, y, c=_INK, s=16, zorder=3,
+            ax.scatter(x, y, c=_ACCENT, s=16, zorder=3,
                        edgecolors="white", linewidths=_PT_EDGE_W)
             circle_patch = plt.Circle(
                 circ[0], circ[1],
@@ -175,7 +178,7 @@ def plot_min_circle_random(mc_obj, sizes, path=None, show=False):
     # Runtime comparison
     fig, ax = _new_fig(figsize=(5.5, 4))
     _style_ax(ax, "Runtime")
-    ax.plot(sizes, time_min_circle, color=_INK, linewidth=_LINE_W,
+    ax.plot(sizes, time_min_circle, color=_ACCENT, linewidth=_LINE_W,
             marker="o", markersize=4, label="Exact")
     ax.plot(sizes, time_heuristic, color=_SILVER, linewidth=_LINE_W,
             marker="o", markersize=4, label="Heuristic")
@@ -223,7 +226,7 @@ def plot_min_circle(mc_obj, data, path=None, show=False):
         ax = axes[idx]
         _style_ax(ax, label)
         ax.set_aspect("equal")
-        ax.scatter(data[:, 0], data[:, 1], c=_INK, s=16,
+        ax.scatter(data[:, 0], data[:, 1], c=_ACCENT, s=16,
                    zorder=3, edgecolors="white", linewidths=_PT_EDGE_W)
         circle_patch = plt.Circle(
             circ[0], circ[1],
@@ -247,7 +250,7 @@ def plot_min_circle(mc_obj, data, path=None, show=False):
     fig, ax = _new_fig(figsize=(4, 3.5))
     _style_ax(ax, "Runtime")
     ax.bar(["Exact", "Heuristic"], [t_exact, t_heur],
-           color=[_CHARCOAL, _SILVER], width=0.40,
+           color=[_ACCENT, _SILVER], width=0.40,
            edgecolor=_BG, linewidth=0.6)
     ax.set_ylabel("Time (s)", fontsize=8.5, color=_STEEL)
     ax.yaxis.set_major_formatter(ticker.FormatStrFormatter("%.4f"))
@@ -284,7 +287,7 @@ def plot_triangulation(tri_obj):
                 linestyle=(0, (3, 4)), zorder=3)
 
     ax.scatter(tri_obj.poly[:, 0], tri_obj.poly[:, 1],
-               c=_INK, s=_PT_SIZE, zorder=4,
+               c=_ACCENT, s=_PT_SIZE, zorder=4,
                edgecolors="white", linewidths=_PT_EDGE_W)
 
     plt.tight_layout()
@@ -338,7 +341,7 @@ def plot_delaunay(dt_obj, title="Delaunay Triangulation", show_circumcircles=Fal
     # Points on top
     ax.scatter(
         dt_obj.points[:, 0], dt_obj.points[:, 1],
-        c=_INK, s=_PT_SIZE, zorder=4,
+        c=_ACCENT, s=_PT_SIZE, zorder=4,
         edgecolors="white", linewidths=_PT_EDGE_W,
     )
 
@@ -383,7 +386,7 @@ def plot_intersections(si_obj, title="Segment Intersections"):
         ix = [p[0] for p in intersections]
         iy = [p[1] for p in intersections]
         ax.scatter(
-            ix, iy, c=_INK, s=50, zorder=5,
+            ix, iy, c=_ACCENT, s=50, zorder=5,
             marker="o", edgecolors="white", linewidths=1.2,
         )
 
@@ -414,7 +417,7 @@ def plot_voronoi(voronoi_obj, cells):
                     color=(*_hex_to_rgb(_CHARCOAL), 0.45),
                     solid_capstyle="round", zorder=2)
 
-    ax.scatter(data[:, 0], data[:, 1], c=_INK, s=_PT_SIZE, zorder=4,
+    ax.scatter(data[:, 0], data[:, 1], c=_ACCENT, s=_PT_SIZE, zorder=4,
                edgecolors="white", linewidths=_PT_EDGE_W)
 
     pad_x = (data[:, 0].max() - data[:, 0].min()) * 0.12
